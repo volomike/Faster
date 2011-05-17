@@ -1,0 +1,26 @@
+Options All +FollowSymLinks -Indexes -Multiviews
+
+# BLOCK ROBOTS AND SPIDERS FROM SCANNING CERTAIN FILES
+IndexIgnore .htaccess *~ *.conf *.sql *.xml
+
+# BLOCK SOME COMMON FILE TYPES FROM END USERS
+<FilesMatch "\.(sql|xml|conf|htaccess)">
+    Deny from all
+</FilesMatch>
+<FilesMatch ".*~$">
+	Deny from all
+</FilesMatch>
+
+# 500MB per HTTP GET or HTTP POST
+LimitRequestBody 536870911
+
+# GIVE US PRETTY URLS
+RewriteEngine On
+
+# NOTE WE DON'T USE RewriteBase. THIS MAKES IT POSSIBLE TO MOVE TO DIFFERENT
+# WEB SERVER CONFIGURATIONS.
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.php [QSA]
+
