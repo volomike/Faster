@@ -61,9 +61,9 @@ Here is what is unique about this PHP MVC framework versus other frameworks:
 * Since Models are where most of the code lives, and since Controllers and Views already have a
   prefix, the models do not have this prefix requirement.
   
-* The controllers are loaded from within a dispatchRoute() framework of the MVC_Request class. This
+* The controllers are loaded from within a dispatchRoute() framework of the Faster_Request class. This
   then gives the controllers the access to the $this object with the framework on it because the
-  MVC_Request class inherits from the MVC class.
+  Faster_Request class inherits from the MVC class.
   
 * The models must be specified to inherit the MVC class. They do not automatically inherit
   this. This gives us the $this variable we need for the framework, which gives us $this->core,

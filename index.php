@@ -28,33 +28,33 @@ if (isset($_SERVER['REDIRECT_QUERY_STRING'])) {
 
 // boot our framework
 
-$mvc = new MVC();
+$mvc = new Faster();
 $mvc->core = new Faster_Core();
 $mvc->view = new Faster_View();
 $mvc->request = new Faster_Request();
 $mvc->model = new Faster_Model();
 $mvc->data = new Faster_Data();
 
-// Remember, Faster_Core does not inherit from MVC. This is because we want to restrict $this only to
+// Remember, Faster_Core does not inherit from Faster. This is because we want to restrict $this only to
 // variables ($this->VARIABLE) and core things like baseurl(), etc.
 $mvc->view->core = $mvc->core;
 $mvc->view->_setRequest($mvc->request);
 
-// inherits from MVC and therefore gets full $this objects for the framework
+// inherits from Faster and therefore gets full $this objects for the framework
 $mvc->request->core = $mvc->core;
 $mvc->request->view = $mvc->view;
 $mvc->request->request = $mvc->request;
 $mvc->request->model = $mvc->model;
 $mvc->request->data = $mvc->data;
 
-// inherits from MVC and therefore gets full $this objects for the framework
+// inherits from Faster and therefore gets full $this objects for the framework
 $mvc->model->core = $mvc->core;
 $mvc->model->view = $mvc->view;
 $mvc->model->request = $mvc->request;
 $mvc->model->model = $mvc->model;
 $mvc->model->data = $mvc->data;
 
-// does not inherit from MVC because it only needs the core object for pathing reasons
+// does not inherit from Faster because it only needs the core object for pathing reasons
 $mvc->data->_setCore($mvc->core);
 
 // set our page timer
@@ -100,14 +100,14 @@ $bStopWhenRouted = TRUE;
 $mvc->request->dispatchRoute('',$bStopWhenRouted);
 
 /**
-* MVC Class
+* Faster Class
 *
 * Serves up the entire framework off the $this variable, as in $this->core, $this->request, 
 * $this->model, and $this->data.
 *
 * @package Faster-Framework-API
 */
-class MVC {
+class Faster {
 	/**
 	* Gets mapped to Faster_Core
 	*/
@@ -129,7 +129,7 @@ class MVC {
 	*/
 	public $data;
 
-} // end class MVC
+} // end class Faster
 
 /**
 * This class handles our controller details and loads our page controllers with the framework
@@ -137,7 +137,7 @@ class MVC {
 *
 * @package Faster-Framework-API
 */
-class Faster_Request extends MVC {
+class Faster_Request extends Faster {
 	/**
 	* Private variable storing our group, parsed from the url.
 	*/
@@ -755,7 +755,7 @@ class Faster_Request extends MVC {
 *
 * @package Faster-Framework-API
 */
-class Faster_Model extends MVC {
+class Faster_Model extends Faster {
 	/**
 	* Loads a model script to be executed and to return an object variable.
 	* 

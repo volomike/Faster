@@ -14,7 +14,7 @@
 *
 * @package User-Sample-Application
 */
-class Test extends MVC {
+class Test extends Faster {
 
 /**
 * A sample class method
