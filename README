@@ -1,0 +1,59 @@
+Faster - A Minimal PHP MVC Framework
+Copyright (c) 2011, Volo, LLC (http://volosites.com/) - Mike McKee
+All rights reserved. BSD License.
+Version 1.01
+
+Why consider Faster, another minimalist PHP MVC framework? For these reasons:
+
+* It is faster. It will take you less time to learn it, less time to install it, less time to code
+  with it, and less time to move a project from one server to another. Plus, it does a fine job of
+  reducing spaghetti code. For this reason, we hope that far less people shy away from an MVC
+  framework and try to learn one and use it. We also think it's a great framework with which to 
+  teach PHP in college.
+
+* There is far less likelihood when the framework is upgraded that it will have an impact on your
+  projects. We're only providing the M, the V, and the C, and a way to easily connect to a database.
+  That's about it.
+    
+* What if you could combine a framework system folder, bootstrap, and front controller into one file
+  and then slim it down to the barest minimums but yet make it still fairly functional? We did just
+  that. The index.php is the framework, bootstrap, and front controller rolled into one. There's a
+  simple beauty in that.
+  
+* We think minimalist PHP MVC frameworks are great because they lessen the learning curve for people
+  joining your team, the PHP library is fairly vast already, PDO is easier to manage in my opinion 
+  than an ORM, and it lets you use best-of-breed components from the web to complete your project.
+  We think do-all PHP MVC frameworks are overblown, increase learning curves, keep people in 
+  forums fighting with the framework, and keep people from seeking out and using best-of-breed
+  solutions to problems because they want to stick to what's in the framework.
+  
+* We think it removes the notion, "My project is too small to require an MVC framework." We made
+  Faster so lightweight that even the smallest project can justify it.
+  
+* What if you didn't have to edit the .htaccess for the RewriteBase, or any other file for that
+  matter, in order to make the project work on a different server? In Faster, you don't have to do
+  anything except copy it to the other server. The $this->config->base() and $this->config->
+  baseurl() automatically are identified.
+
+* It has a unique URL routing system that is easy to understand, and once you grasp it, you'll 
+  wonder why this kind of routing system wasn't available previously. Plus, unlike Kohana's default
+  routing system, you can get away with dashes in the URL for the controller (we call it a "group")
+  and action parts of the URL instead of being forced to have to use underscores. Plus, in Faster,
+  we made it such that you can do virtually anything you want in a URL without having to hop in a
+  framework forum to learn how to edit the route scripts. Faster doesn't have a route script -- it
+  has a clever technique.
+  
+* It tacks on the framework to the $this object, which we think is kind of neat. This is available
+  in the controllers and models. In the views, in order to reduce the likelihood of business logic
+  in the view files, the $this object is limited to the Faster_Core class and the variables that 
+  were passed to it from the controller.
+  
+* Ever get stuck in a tabbed text editor, working between controller, model, and view, and the files
+  are named the same? We thought that was pretty frustrating. So, this is why our controller and
+  view files all start with a prefix of either "c" or "v". We think this helps you work faster in a
+  text editor.
+
+* It doesn't really need a forum to interact with in order to understand it. The framework is so 
+  small, and the docs are great.
+  
+
