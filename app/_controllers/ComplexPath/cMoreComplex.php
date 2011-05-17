@@ -1,7 +1,7 @@
 <?php defined('FRAMEWORK_LOADED') or die('No direct script access.'); ?>
 <?
 /**
-* A sample strange path. Visit the site with...
+* A sample, longer path. Visit the site with...
 *
 * http://{site path}/complex-path/more-complex/
 *
