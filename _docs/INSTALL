@@ -1,0 +1,9 @@
+There is no installation except to copy this framework up to a server along with the hidden
+.htaccess file, and then start creating your controllers, models, and views.
+
+You can remove the _docs folder if you wish.
+
+You can override the example controllers, models, and views that come with it.
+
+Read the README for information about how to use Faster.
+

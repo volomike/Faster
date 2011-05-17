@@ -1,0 +1,135 @@
+Faster - A Minimal PHP MVC Framework
+Copyright (c) 2011, Volo, LLC (http://volosites.com/) - Mike McKee
+All rights reserved. BSD License.
+Version 1.01
+
+This framework is not complicated to install. Just follow the INSTALL instructions. The license is
+also flexible for commercial purposes if you wish to use it for that. See the COPYING file for that
+license information.
+
+Here is what is unique about this PHP MVC framework versus other frameworks:
+
+* It is minimalist. The documentation is in the api-viewer subfolder of this folder.
+
+* It is zero-config. Just drop the project onto a folder on your web server and connect to the URL
+  in order to test it. Then, once you understand how it does URL routing, you can start editing the
+  files in the application folder, replacing the samples with your project.
+
+* There are lot of things that this framework does not include. You are free to fork and code those
+  extra components if you wish. I wanted MVC to be easy to understand, and simple to install and use
+  right away, so I didn't include those things. If you are familiar with the Zend Framework, this
+  framework barely has features similar to Zend_Config, Zend_Controller, Zend_Http, Zend_Loader,
+  Zend_Navigation, Zend_Session, Zend_Uri, and Zend_View. Things like caching, date handling, an
+  ORM, REST API, file handling, pagination, PDF API, etc. are not included. This is basic MVC for
+  the M, the V, and the C, and then an extremely minimalist database class tacked on.
+
+* All the core parts of the framework are usually available in the controllers and models via the
+  $this variable, which gives us access to the objects $this->core, $this->data, $this->model, 
+  $this->request, and $this->view. In the views, however, the $this->core is only available,
+  although if you use the view's setVar() class method, then the $this->VARIABLE technique is
+  available for accessing an assigned variable thanks to the __get() call in that class.
+  
+* The framework only gives us handlers for controllers ($this->request), models ($this->model),
+  views ($this->view), core things like baseurl() and base() ($this->core), and database access for
+  MySQL and SQLite via PDO ($this->data). There are only a small handful of class methods on those
+  classes, so you can easily get started right away.
+  
+* The Apache httpd .htaccess rewrite rules are critical to this framework. It is required. Note,
+  however, that it does not include a RewriteBase. Instead, this framework handles base-finding in
+  the $this->core object. This allows you to install your project into different paths without
+  having to edit the RewriteBase parameter.
+
+* Instead of having the system libraries and bootstrap in separate files and folders, the framework
+  loads everything from the index.php, which also doubles as a front controller.
+  
+* The application subfolder is where you store your controllers, models, views, config file
+  (site.php), and perhaps any other folders you might want there, such as database.
+  
+* The app/database folder is only for SQLite databases. If you don't need it, you can remove that.
+
+* Access to page redirection is in the $this->request object.
+
+* Access to $_GET, $_POST, $_SERVER, $_SESSION, $_COOKIE are in the $this->request object, along
+  with a handy routine for getting any extra parameters of the URL besides group and action.
+  
+* The Controller files of the framework are prefixed with a "c" prefix of the filename so that in
+  tabbed text editors, we can visually see this and realize it's a controller.
+  
+* The View files of the framework are prefixed with a "v" prefix of the filename so that in tabbed
+  text editors, we can visually see this and realize it's a view.
+  
+* Since Models are where most of the code lives, and since Controllers and Views already have a
+  prefix, the models do not have this prefix requirement.
+  
+* The controllers are loaded from within a dispatchRoute() framework of the MVC_Request class. This
+  then gives the controllers the access to the $this object with the framework on it because the
+  MVC_Request class inherits from the MVC class.
+  
+* The models must be specified to inherit the MVC class. They do not automatically inherit
+  this. This gives us the $this variable we need for the framework, which gives us $this->core,
+  $this->data, $this->model, $this->request, and $this->view.
+  
+* The views are in PHP Alternative Syntax and receive variables as normal PHP constants.
+
+* The routing from URL to controller works like so:
+
+   An example of possible URLs and their routing are:
+
+   http://example.com/ = app/_controllers/Default/cDefault.php
+   http://example.com/my-blog-post = app/_controllers/Default/cDefault.php
+   http://example.com/articles/my-blog-post = app/_controllers/Articles/cDefault.php
+   http://example.com/membership-system/get-user = app/_controllers/MembershipSystem/cGetUser.php
+   http://example.com/members/get-user/400 = app/_controllers/Members/cGetUser.php
+   http://example.com/members/get-user/400/500 = app/_controllers/Members/cGetUser.php
+ 
+   Therefore, the typical URL is either in the format:
+
+   http://example.com/
+   http://example.com/{PARAMETER 1..n}
+   http://example.com/{GROUP}/{PARAMETER 1...n}
+   http://example.com/{GROUP}/{ACTION}
+   http://example.com/{GROUP}/{ACTION}/{PARAMETER 1...n}
+   
+   So, the URL offers a group/action setting in the URL if you wish to use that. Otherwise, those
+   values are assumed to be parameters. It depends on whether you have files in the right locations
+   in the app/_controllers folder or not. If not, then the values in the URL are perceived to be
+   parameters.
+   
+   The Default controller group is a folder called Default. The Default controller action is a file
+   called cDefault.php. All dashes in the group and action slots cause the group or action to be 
+   ProperCased with dashes removed, but this is not applied to the parameters that follow that. It 
+   is possible to have a group like Articles, but then map to cDefault.php for action in order to
+   absorb the parameters that may follow. When nothing comes after the base of the site, like 
+   http://example.com/, the site defaults to using the controller path 
+   app/_controllers/Default/cDefault.php.
+   
+* The page controllers do not route multiple actions inside them. Each page controller is a separate
+  action. To override that functionality, edit the dispatchRoute() call near the top of index.php of
+  the framework.   
+   
+* If a view path is not specified with the $this->view->render() or $this->view->display() methods,
+  then we automatically look at the controller path and assume this is the view path. The one
+  exception to that is that the "c" prefix becomes a "v".
+  
+* It can handle access to PDO for SQLite and MySQL. PostgreSQL is possible simply by forking this
+  framework if you desire.
+  
+* A common thing you might need is $this->core->base() or $this->core->baseurl(). These map to the
+  base file path or base URL of the website. So, if you are using the XHTML or HTML tag of
+  <base href="<?= BASEURL ?>" /> in your HEAD section of a page, then you would define that variable
+  in your controller with $this->view->setVar('BASEURL',$this->core->baseurl()). Alternatively, you
+  can use define() to define global constants of BASEPATH and BASEURL by editing the front 
+  controller section of index.php. Remember to do it before the dispatchRoute() call, and after the
+  $mvc object is declared. Use $mvc->core->base() and $mvc->core->baseurl() instead of doing it by
+  the $this technique in your front controller.
+  
+* The project config file settings are in site.conf and must return an array.
+
+P.S. 
+
+Tip: I recommend you look at phpliteadmin.php for a free script that gives you phpmyadmin-like
+access to your SQLite databases. I used it for composing the files in app/database.
+
+Note: I recommend you look in the api-viewer folder of this project, and especially click on
+"Index of elements". This gives you a fast look at all the public properties and methods of this
+framework and helps you learn it fast.

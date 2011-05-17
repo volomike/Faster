@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class MVC_View</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class MVC_View</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+											<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+						
+			</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">This class handles our view details.</p>
+		<p class="notes">
+			Located in <a class="field" href="_index.php.html">/index.php</a> (line <span class="field">896</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+	<a name="sec-const-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Class Constant Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Constants</span> (<a href="#sec-consts">details</a>)
+												<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<div class="const-summary">
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#ENCODE_DEFAULT" title="details" class="const-name">ENCODE_DEFAULT</a> = 					<span class="var-type"> 0</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#ENCODE_HTML" title="details" class="const-name">ENCODE_HTML</a> = 					<span class="var-type"> 1</span>
+
+				</div>
+								<div class="const-title">
+					<img src="../media/images/Constant.png" alt=" " />
+					<a href="#ENCODE_URL" title="details" class="const-name">ENCODE_URL</a> = 					<span class="var-type"> 2</span>
+
+				</div>
+							</div>
+		</div>
+	</div>
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+															<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																								<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$core" title="details" class="var-name">$core</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																												
+												<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#display" title="details" class="method-name">display</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$sFile</span> = <span class="var-default">''</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$bDrawImmediately</span> = <span class="var-default">FALSE</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#render" title="details" class="method-name">render</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$sFile</span> = <span class="var-default">''</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$bDrawImmediately</span> = <span class="var-default">FALSE</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setCVar" title="details" class="method-name">setCVar</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sKey</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$sVal</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$nType</span> = <span class="var-default">self::ENCODE_DEFAULT</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setCVars" title="details" class="method-name">setCVars</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$asVars</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$nType</span> = <span class="var-default">self::ENCODE_DEFAULT</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setVar" title="details" class="method-name">setVar</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sKey</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$sVal</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$nType</span> = <span class="var-default">self::ENCODE_DEFAULT</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setVars" title="details" class="method-name">setVars</a>
+											(<span class="var-type">array</span>&nbsp;<span class="var-name">$asVars</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$nType</span> = <span class="var-default">self::ENCODE_DEFAULT</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#__get" title="details" class="method-name">__get</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sKey</span>)
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+												<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$core" id="$core"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$core</span>
+						(line <span class="line-number">902</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets mapped to MVC_Core so that this functionality is exposed to the View.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																			<a href="#sec-const-summary">Constants</a> (<a href="#sec-consts">details</a>)
+							
+										<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="methoddisplay" id="display"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">display</span> (line <span class="line-number">1086</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Displays our view. See render() for more information. All this class method does is echo  the result of render().</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			display
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$sFile</span> = <span class="var-default">''</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$bDrawImmediately</span> = <span class="var-default">FALSE</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sFile</span><span class="var-description">: A specified file path to the view. If not specified, it will assume the  same path as the controller path, but with &quot;v&quot; instead of &quot;c&quot; on the final file prefix.</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$bDrawImmediately</span><span class="var-description">: Defines whether to cache the view until all elements are drawn  to the browser, and then show it, or show it as it is built.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrender" id="render"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">render</span> (line <span class="line-number">1049</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Renders our view with variables intact, and then returns as a string. The view uses PHP  Alternative Syntax.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			render
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$sFile</span> = <span class="var-default">''</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$bDrawImmediately</span> = <span class="var-default">FALSE</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sFile</span><span class="var-description">: A specified file path to the view. If not specified, it will assume the  same path as the controller path, but with &quot;v&quot; instead of &quot;c&quot; on the final file prefix.</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$bDrawImmediately</span><span class="var-description">: Defines whether to cache the view until all elements are drawn  to the browser, and then show it, or show it as it is built.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetCVar" id="setCVar"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setCVar</span> (line <span class="line-number">993</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Injects a variable into a view. What it does, in reality, is create a global constant which  the view can read.</p>
+<p class="description"><p>Note that View variables must be in UPPERCASE or an error is triggered.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setCVar
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sKey</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$sVal</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$nType</span> = <span class="var-default">self::ENCODE_DEFAULT</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sKey</span><span class="var-description">: The key we want to set for our variable. Becomes the constant name.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sVal</span><span class="var-description">: The value we want to store.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$nType</span><span class="var-description">: A selector from the ENCODE_* constants of this class which lets us do some  encoding on the variable either through htmlentities() or urlencode(), or not at all.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetCVars" id="setCVars"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setCVars</span> (line <span class="line-number">1021</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Does the same thing as setCVar(), but does so with an array of vars at once.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setCVars
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$asVars</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$nType</span> = <span class="var-default">self::ENCODE_DEFAULT</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$asVars</span><span class="var-description">: Array of key =&gt; value pairs.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$nType</span><span class="var-description">: A selector from the ENCODE_* constants of this class which lets us do some  encoding on the variable either through htmlentities() or urlencode(), or not at all.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetVar" id="setVar"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setVar</span> (line <span class="line-number">947</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Injects a variable into a view. The view can then access it via $this-&gt;VARIABLE.</p>
+<p class="description"><p>Note that View variables must be in UPPERCASE or an error is triggered.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setVar
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sKey</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$sVal</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$nType</span> = <span class="var-default">self::ENCODE_DEFAULT</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sKey</span><span class="var-description">: The key we want to set for our variable.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sVal</span><span class="var-description">: The value we want to store.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$nType</span><span class="var-description">: A selector from the ENCODE_* constants of this class which lets us do some  encoding on the variable either through htmlentities() or urlencode(), or not at all.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetVars" id="setVars"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setVars</span> (line <span class="line-number">1034</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Does the same thing as setVar(), but does so with an array of vars at once.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setVars
+		</span>
+					(<span class="var-type">array</span>&nbsp;<span class="var-name">$asVars</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$nType</span> = <span class="var-default">self::ENCODE_DEFAULT</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$asVars</span><span class="var-description">: Array of key =&gt; value pairs.</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$nType</span><span class="var-description">: A selector from the ENCODE_* constants of this class which lets us do some  encoding on the variable either through htmlentities() or urlencode(), or not at all.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="method__get" id="__get"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">__get</span> (line <span class="line-number">974</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Is the inverse of setVar(). Is used to provide $this-&gt;VARIABLE functionality in the view for  accessing variables that were previously assigned with setVar().</p>
+<p class="description"><p>Note that View variables must be in UPPERCASE or an error is triggered.</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			__get
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sKey</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sKey</span><span class="var-description">: The key we want to use to access our variable.</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+	<a name="sec-consts"></a>
+	<div class="info-box">
+		<div class="info-box-title">Class Constants</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Constants</a> (<span class="disabled">details</span>)
+						
+			
+												<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+														| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="constENCODE_DEFAULT" id="ENCODE_DEFAULT"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">ENCODE_DEFAULT</span>
+			 = <span class="const-default"> 0</span>
+			(line <span class="line-number">916</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constant used by some of the class methods to indicate no desire to alter variable.</p>
+	
+	
+</div>
+<a name="constENCODE_HTML" id="ENCODE_HTML"><!-- --></A>
+<div class="evenrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">ENCODE_HTML</span>
+			 = <span class="const-default"> 1</span>
+			(line <span class="line-number">920</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constant used by some of the class methods to indicate we need to use htmlentities() on the variable.</p>
+	
+	
+</div>
+<a name="constENCODE_URL" id="ENCODE_URL"><!-- --></A>
+<div class="oddrow">
+
+	<div class="const-header">
+		<img src="../media/images/Variable.png" />
+		<span class="const-title">
+			<span class="const-name">ENCODE_URL</span>
+			 = <span class="const-default"> 2</span>
+			(line <span class="line-number">924</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Constant used by some of the class methods to indicate we need to use urlencode() on the variable.</p>
+	
+	
+</div>
+						
+		</div>
+	</div>
+
+	<p class="notes" id="credit">
+		Documentation generated on Tue, 17 May 2011 02:09:09 -0400 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

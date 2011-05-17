@@ -1,0 +1,28 @@
+Faster - A Minimal PHP MVC Framework
+Copyright (c) 2011, Volo, LLC (http://volosites.com/) - Mike McKee
+All rights reserved. BSD License.
+Version 1.01
+
+CHANGES
+***********************************
+
+1.01
+*********************************** 
+- Renamed the framework into "Faster".
+- Refactored the Framework class in index.php. Removed the need to reinstantiate the framework, 
+  which makes the framework load faster.
+- Reworked the folder layout with the additional "app" folder so that there's not only better
+  security, but better root folder organization in case someone wants other stuff in the root
+  folder.
+- Better docs (now that I understand phpdoc better).
+- Chagned site.conf -> site.php for more security.
+- Added a complex path example under the application controllers.
+- Added output of Base Path and Base URL (very important things in a framework), as well as page
+  loading time.
+
+
+1.0 
+***********************************
+- Initial release, called "PHP Simple Generic MVC Framework"
+
+
