@@ -29,13 +29,13 @@ if (isset($_SERVER['REDIRECT_QUERY_STRING'])) {
 // boot our framework
 
 $mvc = new MVC();
-$mvc->core = new MVC_Core();
-$mvc->view = new MVC_View();
-$mvc->request = new MVC_Request();
-$mvc->model = new MVC_Model();
-$mvc->data = new MVC_Data();
+$mvc->core = new Faster_Core();
+$mvc->view = new Faster_View();
+$mvc->request = new Faster_Request();
+$mvc->model = new Faster_Model();
+$mvc->data = new Faster_Data();
 
-// Remember, MVC_Core does not inherit from MVC. This is because we want to restrict $this only to
+// Remember, Faster_Core does not inherit from MVC. This is because we want to restrict $this only to
 // variables ($this->VARIABLE) and core things like baseurl(), etc.
 $mvc->view->core = $mvc->core;
 $mvc->view->_setRequest($mvc->request);
@@ -109,23 +109,23 @@ $mvc->request->dispatchRoute('',$bStopWhenRouted);
 */
 class MVC {
 	/**
-	* Gets mapped to MVC_Core
+	* Gets mapped to Faster_Core
 	*/
 	public $core;
 	/**
-	* Gets mapped to MVC_Request; synonym for controller for faster typing
+	* Gets mapped to Faster_Request; synonym for controller for faster typing
 	*/
 	public $request;
 	/**
-	* Gets mapped to MVC_Model
+	* Gets mapped to Faster_Model
 	*/
 	public $model;
 	/**
-	* Gets mapped to MVC_View
+	* Gets mapped to Faster_View
 	*/
 	public $view;
 	/**
-	* Gets mapped to MVC_Data
+	* Gets mapped to Faster_Data
 	*/
 	public $data;
 
@@ -137,7 +137,7 @@ class MVC {
 *
 * @package Faster-Framework-API
 */
-class MVC_Request extends MVC {
+class Faster_Request extends MVC {
 	/**
 	* Private variable storing our group, parsed from the url.
 	*/
@@ -747,7 +747,7 @@ class MVC_Request extends MVC {
 		// RETURN THE DATA
 		return $sData;
 	}	
-} // end class MVC_Request
+} // end class Faster_Request
 
 /**
 * A class for loading model objects and enabling them with a powerful $this object, just like our
@@ -755,7 +755,7 @@ class MVC_Request extends MVC {
 *
 * @package Faster-Framework-API
 */
-class MVC_Model extends MVC {
+class Faster_Model extends MVC {
 	/**
 	* Loads a model script to be executed and to return an object variable.
 	* 
@@ -801,7 +801,7 @@ class MVC_Model extends MVC {
 *
 * @package Faster-Framework-API
 */
-class MVC_Core {
+class Faster_Core {
 
 	/**
 	* Gets mapped to app/site.php file, where we store an array of settings.
@@ -886,18 +886,18 @@ class MVC_Core {
 		return $nTotalTime;
 	}
 
-} // end class MVC_Core
+} // end class Faster_Core
 
 /**
 * This class handles our view details.
 *
 * @package Faster-Framework-API
 */
-class MVC_View {
+class Faster_View {
 
 	
 	/**
-	* Gets mapped to MVC_Core so that this functionality is exposed to the View.
+	* Gets mapped to Faster_Core so that this functionality is exposed to the View.
 	*/
 	public $core;
 	/**
@@ -1087,7 +1087,7 @@ class MVC_View {
 		echo $this->render($sFile, $bDrawImmediately);
 	}
 
-} // end class MVC_View
+} // end class Faster_View
 
 /**
 * A simplistic data class that helps us with PDO with MySQL or SQLite. This class is intentionally
@@ -1095,7 +1095,7 @@ class MVC_View {
 *
 * @package Faster-Framework-API
 */
-class MVC_Data {
+class Faster_Data {
 
 	/**
 	* Private variable to store our core object, used by this class.
@@ -1193,7 +1193,7 @@ class MVC_Data {
 			if ($SQLSTATE == '23000') {
 				return getNewID();
 			}
-			trigger_error("The SQLSTATE ($SQLSTATE) error code happened in getNewID() of the MVC_Data class.", E_USER_ERROR);
+			trigger_error("The SQLSTATE ($SQLSTATE) error code happened in getNewID() of the Faster_Data class.", E_USER_ERROR);
 		}
 		return $sKey;
 	}
@@ -1217,6 +1217,6 @@ class MVC_Data {
 		return trim($s);
 	}
 
-} // end class MVC_Data
+} // end class Faster_Data
 
 
