@@ -1,0 +1,886 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class Faster_Request</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class Faster_Request</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-vars">Vars</a>
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">This class handles our controller details and loads our page controllers with the framework  objects hanging off of the $this object.</p>
+		<p class="notes">
+			Located in <a class="field" href="_index.php.html">/index.php</a> (line <span class="field">140</span>)
+		</p>
+		
+				
+		<pre><a href="../Faster-Framework-API/MVC.html">MVC</a>
+   |
+   --Faster_Request</pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-vars">Vars</a>
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																																																																												
+												<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#deleteCookie" title="details" class="method-name">deleteCookie</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sLabel</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#dispatchRoute" title="details" class="method-name">dispatchRoute</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$sWhichController</span> = <span class="var-default">''</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$bStopWhenRouted</span> = <span class="var-default">TRUE</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getAction" title="details" class="method-name">getAction</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getGroup" title="details" class="method-name">getGroup</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getIP" title="details" class="method-name">getIP</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getParams" title="details" class="method-name">getParams</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getPath" title="details" class="method-name">getPath</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getPostedVars" title="details" class="method-name">getPostedVars</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getReferer" title="details" class="method-name">getReferer</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getReferrer" title="details" class="method-name">getReferrer</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getServerVars" title="details" class="method-name">getServerVars</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getSessionVar" title="details" class="method-name">getSessionVar</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sVar</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getUserAgent" title="details" class="method-name">getUserAgent</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#getVars" title="details" class="method-name">getVars</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">array</span>
+										<a href="#isPosted" title="details" class="method-name">isPosted</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#readCookie" title="details" class="method-name">readCookie</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sLabel</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#readEncryptedCookie" title="details" class="method-name">readEncryptedCookie</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sLabel</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#redirectRoute" title="details" class="method-name">redirectRoute</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sPath</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$bTemp</span> = <span class="var-default">1</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setSessionVar" title="details" class="method-name">setSessionVar</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sVar</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$sVal</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#writeCookie" title="details" class="method-name">writeCookie</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sLabel</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$sValue</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#writeEncryptedCookie" title="details" class="method-name">writeEncryptedCookie</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sLabel</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$sValue</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#writeEncryptedPersistentCookie" title="details" class="method-name">writeEncryptedPersistentCookie</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sLabel</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$sValue</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#writePersistentCookie" title="details" class="method-name">writePersistentCookie</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sLabel</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$sValue</span>)
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+										<h4>Inherited Variables</h4>
+				<A NAME='inherited_vars'><!-- --></A>
+									<p>Inherited from <span class="classname"><a href="../Faster-Framework-API/MVC.html">MVC</a></span></p>
+					<blockquote>
+													<span class="var-title">
+								<span class="var-name"><a href="../Faster-Framework-API/MVC.html#var$core">MVC::$core</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../Faster-Framework-API/MVC.html#var$data">MVC::$data</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../Faster-Framework-API/MVC.html#var$model">MVC::$model</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../Faster-Framework-API/MVC.html#var$request">MVC::$request</a></span><br>
+							</span>
+													<span class="var-title">
+								<span class="var-name"><a href="../Faster-Framework-API/MVC.html#var$view">MVC::$view</a></span><br>
+							</span>
+											</blockquote> 
+										
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-vars">Vars</a>
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="methoddeleteCookie" id="deleteCookie"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">deleteCookie</span> (line <span class="line-number">646</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Given a key, this will delete a cookie.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			deleteCookie
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sLabel</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sLabel</span><span class="var-description">: the key of that cookie</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddispatchRoute" id="dispatchRoute"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">dispatchRoute</span> (line <span class="line-number">512</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Looks at the incoming URL, or the $sWhichController variable, and routes the site workflow  to that controller. Can also be used for 404 handling. As well, can also be used to dispatch  a route but not stop (exit(0)) when done. An example of possible URLs and their routing are:</p>
+<p class="description"><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-id">http</span>:<span class="src-comm">//example.com/&nbsp;=&nbsp;app/_controllers/Default/cDefault.php</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-id">http</span>:<span class="src-comm">//example.com/my-blog-post&nbsp;=&nbsp;app/_controllers/Default/cDefault.php</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-id">http</span>:<span class="src-comm">//example.com/articles/my-blog-post&nbsp;=&nbsp;app/_controllers/Articles/cDefault.php</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-id">http</span>:<span class="src-comm">//example.com/membership-system/get-user&nbsp;=&nbsp;app/_controllers/MembershipSystem/cGetUser.php</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-id">http</span>:<span class="src-comm">//example.com/members/get-user/400&nbsp;=&nbsp;app/_controllers/Members/cGetUser.php</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-id">http</span>:<span class="src-comm">//example.com/members/get-user/400/500&nbsp;=&nbsp;app/_controllers/Members/cGetUser.php</span></div></li>
+</ol></div></p><p>Therefore, the typical URL is either in the format:</p><p><div class="src-code"><ol><li><div class="src-line">&nbsp;<span class="src-id">http</span>:<span class="src-comm">//example.com/</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-id">http</span>:<span class="src-comm">//example.com/{PARAMETER&nbsp;1..n}</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-id">http</span>:<span class="src-comm">//example.com/{GROUP}/{PARAMETER&nbsp;1...n}</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-id">http</span>:<span class="src-comm">//example.com/{GROUP}/{ACTION}</span></div></li>
+<li><div class="src-line">&nbsp;<span class="src-id">http</span>:<span class="src-comm">//example.com/{GROUP}/{ACTION}/{PARAMETER&nbsp;1...n}</span></div></li>
+</ol></div></p><p>The Default controller group is a folder called Default.  The Default controller action is a file called cDefault.php.  The actual controller file begins with a 'c' prefix because it helps us in tabbed text editors  so as not to confuse these with models or views.  All dashes in the group and action slots cause the group or action to be ProperCased with  dashes removed, but this is not applied to the parameters that follow that.  It is possible to have a group like Articles, but then map to cDefault.php for action in order to  absorb the parameters that may follow.  When nothing comes after the base of the site, like http://example.com/, the site defaults to  using the controller path app/_controllers/Default/cDefault.php</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			dispatchRoute
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$sWhichController</span> = <span class="var-default">''</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$bStopWhenRouted</span> = <span class="var-default">TRUE</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sWhichController</span><span class="var-description">: By default, the front controller leaves this empty and therefore  parses the URL for that value. However, this can be overridden. Pass a value of 404 here and the  framework will try to send 404 headers and try to load either a 404.php or 404.html file, if found  or merely stop with the 404 headers.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$bStopWhenRouted</span><span class="var-description">: By default, the front controller stops code execution after the  routing, which means it runs through the controller code and then stops. However, this can be  overridden.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetAction" id="getAction"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getAction</span> (line <span class="line-number">379</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the actual action paramter of the URL, which comes right after the group part of the  URL. Has been checked to see if this location exists with the controllers.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> Actual action parameter of the URL.</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getAction
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetGroup" id="getGroup"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getGroup</span> (line <span class="line-number">356</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the actual group paramter of the URL, which comes right after the base part of the  URL. Has been checked to see if this location exists with the controllers.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> Actual group parameter of the URL.</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getGroup
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetIP" id="getIP"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getIP</span> (line <span class="line-number">233</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the IP address of this user</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> IP Address</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getIP
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetParams" id="getParams"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getParams</span> (line <span class="line-number">407</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the parameters of the URL that come after the group and action. Has been checked  to prove that these parameters are not part of the controller path.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> Parameters of the URL, if present, beyond the action parameter of the URL.</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getParams
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetPath" id="getPath"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getPath</span> (line <span class="line-number">292</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the actual base file path of the site</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> Base file path</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getPath
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetPostedVars" id="getPostedVars"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getPostedVars</span> (line <span class="line-number">456</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the $_POST -- added to keep the framework consistent.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The $_POST parameters</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getPostedVars
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetReferer" id="getReferer"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getReferer</span> (line <span class="line-number">283</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Another version of getReferrer, in case misspelled</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The referring page</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getReferer
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetReferrer" id="getReferrer"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getReferrer</span> (line <span class="line-number">269</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the referring page to the current web page.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The referring page</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getReferrer
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetServerVars" id="getServerVars"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getServerVars</span> (line <span class="line-number">465</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the $_SERVER -- added to keep the framework consistent.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The $_SERVER parameters</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getServerVars
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetSessionVar" id="getSessionVar"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getSessionVar</span> (line <span class="line-number">211</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns a session variable.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The session variable value</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getSessionVar
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sVar</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sVar</span><span class="var-description">: The session variable key</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetUserAgent" id="getUserAgent"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getUserAgent</span> (line <span class="line-number">255</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the User Agent string of this user</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> User Agent string</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getUserAgent
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetVars" id="getVars"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getVars</span> (line <span class="line-number">447</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the $_GET -- added to keep the framework consistent.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The $_GET parameters</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			getVars
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodisPosted" id="isPosted"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">isPosted</span> (line <span class="line-number">201</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Identify whether someone posted a form to the site.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The $_POST array</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">array</span>
+		<span class="method-name">
+			isPosted
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodreadCookie" id="readCookie"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">readCookie</span> (line <span class="line-number">565</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns an unencrypted cookie value.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The value of that cookie by key</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			readCookie
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sLabel</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sLabel</span><span class="var-description">: The key of that cookie value</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodreadEncryptedCookie" id="readEncryptedCookie"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">readEncryptedCookie</span> (line <span class="line-number">581</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns an unencrypted cookie value that was encrypted.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The value of that cookie by key</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			readEncryptedCookie
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sLabel</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sLabel</span><span class="var-description">: The key of that cookie value</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodredirectRoute" id="redirectRoute"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">redirectRoute</span> (line <span class="line-number">182</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Redirect the user's browser to another location.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			redirectRoute
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sPath</span>, [<span class="var-type">bool</span>&nbsp;<span class="var-name">$bTemp</span> = <span class="var-default">1</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sPath</span><span class="var-description">: Where to redirect the user.</span>			</li>
+					<li>
+				<span class="var-type">bool</span>
+				<span class="var-name">$bTemp</span><span class="var-description">: Defaults to 1; designates whether this is a permanent or temporary redirection.</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetSessionVar" id="setSessionVar"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setSessionVar</span> (line <span class="line-number">223</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets a session variable.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setSessionVar
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sVar</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$sVal</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sVar</span><span class="var-description">: The session variable key to set</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sVal</span><span class="var-description">: The session variable value to set</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodwriteCookie" id="writeCookie"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">writeCookie</span> (line <span class="line-number">593</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Writes a cookie value. This is a session cookie, not persistent.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			writeCookie
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sLabel</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$sValue</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sLabel</span><span class="var-description">: The key of that cookie value</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sValue</span><span class="var-description">: The value of that cookie by key</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodwriteEncryptedCookie" id="writeEncryptedCookie"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">writeEncryptedCookie</span> (line <span class="line-number">625</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Encrypts and writes an encrypted cookie value. This is a session cookie, not persistent.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			writeEncryptedCookie
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sLabel</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$sValue</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sLabel</span><span class="var-description">: The key of that cookie value</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sValue</span><span class="var-description">: The value of that cookie by key</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodwriteEncryptedPersistentCookie" id="writeEncryptedPersistentCookie"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">writeEncryptedPersistentCookie</span> (line <span class="line-number">636</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Encrypts and writes an encrypted cookie value. This is a persistent cookie.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			writeEncryptedPersistentCookie
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sLabel</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$sValue</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sLabel</span><span class="var-description">: The key of that cookie value</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sValue</span><span class="var-description">: The value of that cookie by key</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodwritePersistentCookie" id="writePersistentCookie"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">writePersistentCookie</span> (line <span class="line-number">610</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Writes a cookie value. This is a persistent, not session, cookie. The persistence is for  365 days.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			writePersistentCookie
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sLabel</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$sValue</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sLabel</span><span class="var-description">: The key of that cookie value</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sValue</span><span class="var-description">: The value of that cookie by key</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Tue, 17 May 2011 04:36:04 -0400 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>
