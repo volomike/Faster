@@ -3,14 +3,14 @@
 /**
 * A sample model class.
 *
-* Note that this class extends MVC so that the $this parameter gets populated with our core, request,
+* Note that this class extends Faster so that the $this parameter gets populated with our core, request,
 * model, view, and data objects.
 *
 * @package User-Sample-Application
 */
 
 /**
-* Test class, which extends MVC. This is typically how you would build a model class in this framework.
+* Test class, which extends Faster. This is typically how you would build a model class in this framework.
 *
 * @package User-Sample-Application
 */
