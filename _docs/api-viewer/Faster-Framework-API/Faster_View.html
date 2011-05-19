@@ -26,7 +26,7 @@
         		<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">This class handles our view details.</p>
 		<p class="notes">
-			Located in <a class="field" href="_index.php.html">/index.php</a> (line <span class="field">896</span>)
+			Located in <a class="field" href="_index.php.html">/index.php</a> (line <span class="field">989</span>)
 		</p>
 		
 				
@@ -115,7 +115,7 @@
 																<div class="method-definition">
 											<span class="method-result">void</span>
 										<a href="#render" title="details" class="method-name">render</a>
-											([<span class="var-type">string</span>&nbsp;<span class="var-name">$sFile</span> = <span class="var-default">''</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$bDrawImmediately</span> = <span class="var-default">FALSE</span>])
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$_sFile</span> = <span class="var-default">''</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$_bDrawImmediately</span> = <span class="var-default">FALSE</span>])
 									</div>
 																<div class="method-definition">
 											<span class="method-result">void</span>
@@ -168,7 +168,7 @@
 		<span class="var-title">
 			<span class="var-type">mixed</span>
 			<span class="var-name">$core</span>
-						(line <span class="line-number">902</span>)
+						(line <span class="line-number">995</span>)
 		</span>
 	</div>
 
@@ -205,7 +205,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">display</span> (line <span class="line-number">1086</span>)
+		<span class="method-title">display</span> (line <span class="line-number">1185</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -237,11 +237,12 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">render</span> (line <span class="line-number">1049</span>)
+		<span class="method-title">render</span> (line <span class="line-number">1146</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Renders our view with variables intact, and then returns as a string. The view uses PHP  Alternative Syntax.</p>
+<p class="description"><p>Note all variables use underscores so as not to pass them to the view file. This is  just a precautionary failsafe. We do an unset() on all variables we can before the  require_once() call.</p></p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -251,16 +252,16 @@
 		<span class="method-name">
 			render
 		</span>
-					([<span class="var-type">string</span>&nbsp;<span class="var-name">$sFile</span> = <span class="var-default">''</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$bDrawImmediately</span> = <span class="var-default">FALSE</span>])
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$_sFile</span> = <span class="var-default">''</span>], [<span class="var-type">bool</span>&nbsp;<span class="var-name">$_bDrawImmediately</span> = <span class="var-default">FALSE</span>])
 			</div>
 	
 			<ul class="parameters">
 					<li>
 				<span class="var-type">string</span>
-				<span class="var-name">$sFile</span><span class="var-description">: A specified file path to the view. If not specified, it will assume the  same path as the controller path, but with &quot;v&quot; instead of &quot;c&quot; on the final file prefix.</span>			</li>
+				<span class="var-name">$_sFile</span><span class="var-description">: A specified file path to the view. If not specified, it will assume the  same path as the controller path, but with &quot;v&quot; instead of &quot;c&quot; on the final file prefix.</span>			</li>
 					<li>
 				<span class="var-type">bool</span>
-				<span class="var-name">$bDrawImmediately</span><span class="var-description">: Defines whether to cache the view until all elements are drawn  to the browser, and then show it, or show it as it is built.</span>			</li>
+				<span class="var-name">$_bDrawImmediately</span><span class="var-description">: Defines whether to cache the view until all elements are drawn  to the browser, and then show it, or show it as it is built.</span>			</li>
 				</ul>
 		
 			
@@ -269,7 +270,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">setCVar</span> (line <span class="line-number">993</span>)
+		<span class="method-title">setCVar</span> (line <span class="line-number">1086</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -305,7 +306,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">setCVars</span> (line <span class="line-number">1021</span>)
+		<span class="method-title">setCVars</span> (line <span class="line-number">1114</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -337,7 +338,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">setVar</span> (line <span class="line-number">947</span>)
+		<span class="method-title">setVar</span> (line <span class="line-number">1040</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -373,7 +374,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">setVars</span> (line <span class="line-number">1034</span>)
+		<span class="method-title">setVars</span> (line <span class="line-number">1127</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -405,7 +406,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">__get</span> (line <span class="line-number">974</span>)
+		<span class="method-title">__get</span> (line <span class="line-number">1067</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -457,7 +458,7 @@
 		<span class="const-title">
 			<span class="const-name">ENCODE_DEFAULT</span>
 			 = <span class="const-default"> 0</span>
-			(line <span class="line-number">916</span>)
+			(line <span class="line-number">1009</span>)
 		</span>
 	</div>
 
@@ -474,7 +475,7 @@
 		<span class="const-title">
 			<span class="const-name">ENCODE_HTML</span>
 			 = <span class="const-default"> 1</span>
-			(line <span class="line-number">920</span>)
+			(line <span class="line-number">1013</span>)
 		</span>
 	</div>
 
@@ -491,7 +492,7 @@
 		<span class="const-title">
 			<span class="const-name">ENCODE_URL</span>
 			 = <span class="const-default"> 2</span>
-			(line <span class="line-number">924</span>)
+			(line <span class="line-number">1017</span>)
 		</span>
 	</div>
 
@@ -505,7 +506,7 @@
 	</div>
 
 	<p class="notes" id="credit">
-		Documentation generated on Tue, 17 May 2011 05:05:57 -0400 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Thu, 19 May 2011 16:25:01 -0400 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

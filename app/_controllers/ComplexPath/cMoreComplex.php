@@ -13,5 +13,5 @@
 * 
 * @package User-Sample-Application
 */
-die('You have arrived at the proper controller for that path.');
+die("You have arrived at the proper controller for that path.\n");
 

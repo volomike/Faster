@@ -66,7 +66,7 @@ margin-left:40px;
 <body>
 
 <div id="header">
-Faster -- A Minimalist PHP MVC Framework v.1.01
+Faster -- A Minimalist PHP MVC Framework v.1.02
 </div><!-- #header -->
 
 <p>&nbsp;</p>

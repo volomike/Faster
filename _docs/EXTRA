@@ -1,0 +1,27 @@
+###############################################
+##  Command Line Usage
+###############################################
+
+Command line usage is possible with the --path="" technique, as in 
+--path="complex-path/more-complex". Note that arguments can come after this with --parameters if you
+wish. The double dash is optional and is removed. Also, if the parameters are wrapped with double or
+single quotes, these are removed.
+
+Ex:
+
+$ php index.php --path="complex-path/more-complex" "O'Henry" --item1 --p="O'Henry"
+
+This would then expect a controller in the path:
+
+app/_controllers/ComplexPath/cMoreComplex.php
+
+If you did "print_r($this->request->getParams())" you would see a result like:
+
+Array
+(
+    [0] => O'Henry
+    [1] => item1
+    [2] => p=O'Henry
+)
+
+

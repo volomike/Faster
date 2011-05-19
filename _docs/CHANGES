@@ -1,10 +1,20 @@
 Faster - A Minimal PHP MVC Framework
 Copyright (c) 2011, Volo, LLC (http://volosites.com/) - Mike McKee
 All rights reserved. BSD License.
-Version 1.01
+Version 1.02
 
 CHANGES
 ***********************************
+
+1.02
+*********************************** 
+- Added command line usage with the --path="" technique, as in --path="complex-path/more-complex". 
+  Note that arguments can come after this with --parameters if you wish. The double dash is optional
+  and is removed. Also, if the parameters are wrapped with double or single quotes, these are 
+  removed. See the EXTRA doc in this folder for an explanation of usage.
+- Because of the new CLI usage, added 2 new public class methods polishGroup() and polishAction() 
+  which are used for switching the group and action parts of the CLI path or the URL path to the 
+  proper format necessary for dispatchRoute().
 
 1.01
 *********************************** 

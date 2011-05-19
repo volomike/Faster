@@ -1,7 +1,7 @@
 Faster - A Minimal PHP MVC Framework
 Copyright (c) 2011, Volo, LLC (http://volosites.com/) - Mike McKee
 All rights reserved. BSD License.
-Version 1.01
+Version 1.02
 
 This framework is not complicated to install. Just follow the INSTALL instructions. The license is
 also flexible for commercial purposes if you wish to use it for that. See the COPYING file for that
@@ -133,3 +133,6 @@ access to your SQLite databases. I used it for composing the files in app/databa
 Note: I recommend you look in the api-viewer folder of this project, and especially click on
 "Index of elements". This gives you a fast look at all the public properties and methods of this
 framework and helps you learn it fast.
+
+Be sure to check out the EXTRA document in this folder for other information.
+

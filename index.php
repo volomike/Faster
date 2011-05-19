@@ -9,7 +9,7 @@
 * @package Faster-Framework-API
 * @author Volo, LLC
 * @link http://volosites.com/
-* @version 1.01
+* @version 1.02
 */
 
 // SPEED UP PHP BY TURNING OFF UNNECESSARY ASP TAG PARSING
@@ -61,8 +61,26 @@ $mvc->data->_setCore($mvc->core);
 $mvc->core->_setPageLoadStart();
 
 // let our request object figure out the incoming URL
-$mvc->request->_setGroup($mvc->request->getGroup());
-$mvc->request->_setAction($mvc->request->getAction());
+$sTest = @ $argv[1];
+$bCLI = (!empty($sTest));
+if ($bCLI) {
+	$sPath = $sTest;
+	$sPath = str_replace('--PATH','',$sPath);
+	$sPath = str_replace('--path','',$sPath);
+	$sPath = str_replace('--','',$sPath);
+	$sPath = str_replace('.php','',$sPath);
+	$sPath = str_replace('.PHP','',$sPath);
+	$sPath = str_replace('=','',$sPath);
+	$sPath = str_replace('"','',$sPath);
+	$sPath = str_replace("'",'',$sPath);
+	$sPath = str_replace('\\','/',$sPath);
+	$sPath = str_replace(' ','',$sPath);
+	$mvc->request->_setGroup($mvc->request->polishGroup($sPath));
+	$mvc->request->_setAction($mvc->request->polishAction($sPath));
+} else {
+	$mvc->request->_setGroup($mvc->request->getGroup());
+	$mvc->request->_setAction($mvc->request->getAction());
+}
 
 // SET OUR TIMEZONE STUFF
 try {
@@ -291,24 +309,25 @@ class Faster_Request extends Faster {
 	*/
 	public function getPath(){
 		$sPath = str_replace('\\', '/', substr(dirname(__FILE__), strlen($_SERVER['DOCUMENT_ROOT'])));
-		$s = $_SERVER['REQUEST_URI'];
+		$s = @ $_SERVER['REQUEST_URI'];
 		$sTest = substr($s, 0, strlen($sPath));
 		if ($sTest == $sPath) {
 			$s = substr($s, strlen($sPath));
 		}
+		if (empty($s)) {
+			$s = dirname(__FILE__);
+		}
 		return $s;
 	}
-
+	
 	/**
-	* Returns a guess of a group from the URL, which comes right after the base URL.
-	* It is not entirely accurate and cannot be trusted yet because the value may be a parameter,
-	* instead. Therefore, this routine is used by another class method, which is why it is marked
-	* private and not meant for the outside world.
-	* 
-	* @return string Guessed group parameter of the URL
+	* Converts the Group (aka "controller") portion of the URL from dashes into the form that is
+	* used by this framework in its ProperCase format.
+	*
+	* @param string $s The path. This is parsed from getPath() unless a URL is passed to it.
+	* @return string Group portion of the URL
 	*/
-	private function _getGuessGroup(){
-		$s = $this->getPath();
+	public function polishGroup($s) {
 		$s = ltrim($s, '/');
 		$s = rtrim($s, '/');
 		$s = str_replace('-',' ',$s);
@@ -317,20 +336,17 @@ class Faster_Request extends Faster {
 		$s = strrev($s);
 		$s = basename($s);
 		$s = strrev($s);
-		$s = (empty($s)) ? 'Default' : $s;
 		return $s;
 	}
-
+	
 	/**
-	* Returns a guess of the action part of the URL, which comes right after the detected group
-	* parameter. It is not entirel yaccurate and cannot be trusted yet because the value may be
-	* a parameter, instead. Therefore, this routine is used by another class method, which is why
-	* it is marked private and not meant for the outside world.
-	* 
-	* @return string Guessed action parameter of the URL
+	* Converts the Action portion of the URL from dashes into the form that is
+	* used by this framework in its ProperCase format.
+	*
+	* @param string $s The path. This is parsed from getPath() unless a URL is passed to it.
+	* @return string Action portion of the URL
 	*/
-	private function _getGuessAction(){
-		$s = $this->getPath();
+	public function polishAction($s){
 		$s = ltrim($s, '/');
 		$s = rtrim($s, '/');
 		$s = str_replace('-',' ',$s);
@@ -344,7 +360,33 @@ class Faster_Request extends Faster {
 		$s = @ $asParts[1];
 		$s = ucfirst($s);
 		$s = (empty($s)) ? 'Default' : $s;
-		return $s;
+		return $s;	
+	}
+
+	/**
+	* Returns a guess of a group from the URL, which comes right after the base URL.
+	* It is not entirely accurate and cannot be trusted yet because the value may be a parameter,
+	* instead. Therefore, this routine is used by another class method, which is why it is marked
+	* private and not meant for the outside world.
+	* 
+	* @return string Guessed group parameter of the URL
+	*/
+	private function _getGuessGroup(){
+		$s = $this->getPath();
+		return $this->polishGroup($s);
+	}
+
+	/**
+	* Returns a guess of the action part of the URL, which comes right after the detected group
+	* parameter. It is not entirel yaccurate and cannot be trusted yet because the value may be
+	* a parameter, instead. Therefore, this routine is used by another class method, which is why
+	* it is marked private and not meant for the outside world.
+	* 
+	* @return string Guessed action parameter of the URL
+	*/
+	private function _getGuessAction(){
+		$s = $this->getPath();
+		return $this->polishAction($s);
 	}
 
 	/**
@@ -402,12 +444,44 @@ class Faster_Request extends Faster {
 	* Returns the parameters of the URL that come after the group and action. Has been checked
 	* to prove that these parameters are not part of the controller path.
 	*
-	* @return string Parameters of the URL, if present, beyond the action parameter of the URL.
+	* @return array An Array of string parameters of the URL, if present, beyond the action parameter of the URL.
 	*/
 	public function getParams(){
 		if (isset($this->_params)) {
 			return $this->_params;
 		}
+		
+		global $argv;
+		$sTest = @ $argv[1];
+		$bCLI = (!empty($sTest));
+		
+		if ($bCLI) {
+			$asParams = $argv;
+			array_shift($asParams);
+			array_shift($asParams);
+			foreach($asParams as $sKey => $sVal) {
+				$sTest = 'xxx##77' . $sVal;
+				if (strpos(' ' . $sTest, 'xxx##77--')>0) {
+					$sTest = str_replace('xxx##77--','',$sTest);
+					$asParams[$sKey] = $sTest;
+				}
+				$sTest = 'xxx##77' . $sVal . 'xxx##77';
+				if (strpos(' ' . $sTest, 'xxx#77"')>0) {
+					$sTest = str_replace('xxx##77"','',$sTest);
+					$sTest = str_replace('"xxx##77','',$sTest);
+					$asParams[$sKey] = $sTest;
+				}
+				$sTest = 'xxx##77' . $sVal . 'xxx##77';
+				if (strpos(' ' . $sTest, "xxx#77'")>0) {
+					$sTest = str_replace("xxx##77'",'',$sTest);
+					$sTest = str_replace("'xxx##77",'',$sTest);
+					$asParams[$sKey] = $sTest;
+				}
+			}
+			$this->_params = $asParams;
+			return $asParams;			
+		}
+		
 		$F = $this->core->base();
 		$sGroup = $this->getGroup();
 		$sAction = $this->getAction();
@@ -501,57 +575,68 @@ class Faster_Request extends Faster {
 	* When nothing comes after the base of the site, like http://example.com/, the site defaults to
 	* using the controller path app/_controllers/Default/cDefault.php
 	*
-	* @param string $sWhichController By default, the front controller leaves this empty and therefore
+	* Note underscores in variables in this function are so that the controller doesn't inherit
+	* variables. (I mean, it does, but it would have to use underscore vars.) This is actually a
+	* failsafe in case this function gets edited. We will do unset() on all variables possible.
+	*
+	* @param string $_sWhichController By default, the front controller leaves this empty and therefore
 	* parses the URL for that value. However, this can be overridden. Pass a value of 404 here and the
 	* framework will try to send 404 headers and try to load either a 404.php or 404.html file, if found
 	* or merely stop with the 404 headers.
-	* @param string $bStopWhenRouted By default, the front controller stops code execution after the
+	* @param string $_bStopWhenRouted By default, the front controller stops code execution after the
 	* routing, which means it runs through the controller code and then stops. However, this can be
 	* overridden.
 	*/
-	public function dispatchRoute($sWhichController = '', $bStopWhenRouted = TRUE){
-		$F = $this->core->base();
-		if (($sWhichController == 404) or ($sWhichController == '404')) {
+	public function dispatchRoute($_sWhichController = '', $_bStopWhenRouted = TRUE){
+		$_F = $this->core->base();
+		if (($_sWhichController == 404) or ($_sWhichController == '404')) {
 			if (!headers_sent()) {
 				header('HTTP/1.1 404 Not Found');
 				header('Status: 404 Not Found');
 			}
-			if (file_exists($F . '/404.php')) {
-				require_once($F . '/404.php');
+			if (file_exists($_F . '/404.php')) {
+				unset($_sWhichController);
+				unset($_bStopWhenRouted);
+				require_once($_F . '/404.php');
 			} else {
-				@ include($F . '/404.html');
+				@ include($_F . '/404.html');
 			}
 			die();
 		}
-		if (empty($sWhichController)) {
-			$sGroup = $this->getGroup();
-			$sAction = $this->getAction();
-			if (!file_exists($F . '/app/_controllers')) {
+		if (empty($_sWhichController)) {
+			$_sGroup = $this->getGroup();
+			$_sAction = $this->getAction();
+			if (!file_exists($_F . '/app/_controllers')) {
 				trigger_error('Your folder layout is missing a app/_controllers folder', E_USER_ERROR);
 			}
-			if (!file_exists($F . '/app/_controllers/Default')) {
+			if (!file_exists($_F . '/app/_controllers/Default')) {
 				trigger_error('Your folder layout is missing a app/_controllers/Default controller folder', E_USER_ERROR);
 			}
-			if (!file_exists($F . '/app/_controllers/Default/cDefault.php')) {
+			if (!file_exists($_F . '/app/_controllers/Default/cDefault.php')) {
 				trigger_error('Your folder layout is missing a app/_controllers/Default/cDefault.php controller file', E_USER_ERROR);
 			}
-			$sPath = $F . '/app/_controllers/' . $sGroup . '/c' . $sAction . '.php';
-			if (!file_exists($sPath)) {
-				trigger_error('Your folder layout is missing a "' . $sPath . '" controller file', E_USER_ERROR);
+			$_sPath = $_F . '/app/_controllers/' . $_sGroup . '/c' . $_sAction . '.php';
+			if (!file_exists($_sPath)) {
+				trigger_error('Your folder layout is missing a "' . $_sPath . '" controller file', E_USER_ERROR);
 			}
-			require_once($sPath);
+			unset($_sWhichController);
+			unset($_F);
+			unset($_sGroup);
+			unset($_sAction);			
+			require_once($_sPath);
 		} else {
-			$s = $sWhichController;
-			$s = str_replace('.php','',$s);
-			$s = ltrim($s, '/');
-			$s = rtrim($s, '/');		
-			$s .= '.x';
-			$sBase = basename($s);
-			$s = str_replace('/' . $sBase . '.x','/c' . $sBase . '.x');
-			$s = str_replace('.x','',$s);
-			require_once($F . '/app/_controllers/' . $s . '.php');
+			$_s = $_sWhichController;
+			$_s = str_replace('.php','',$_s);
+			$_s = ltrim($_s, '/');
+			$_s = rtrim($_s, '/');		
+			$_s .= '.x';
+			$_sBase = basename($_s);
+			$_s = str_replace('/' . $_sBase . '.x','/c' . $_sBase . '.x');
+			$_s = str_replace('.x','',$_s);
+			unset($_sWhichController);
+			require_once($_F . '/app/_controllers/' . $_s . '.php');
 		}
-		if ($bStopWhenRouted) {
+		if ($_bStopWhenRouted) {
 			exit(0);
 		}
 	}
@@ -758,40 +843,48 @@ class Faster_Request extends Faster {
 class Faster_Model extends Faster {
 	/**
 	* Loads a model script to be executed and to return an object variable.
+	*
+	* Note all variables use underscores so as not to pass them to the model class file. This is
+	* just a precautionary failsafe. We do an unset() on all variables we can before the
+	* require_once() call.
 	* 
-	* @param string $sModelName The model path, such as 'Test', or 'SampleSystem/Test'. This translates
+	* @param string $_sModelName The model path, such as 'Test', or 'SampleSystem/Test'. This translates
 	* to app/_models/Test.php and app/_models/SampleSystem/Test.php, for example. Note that models do not have
 	* an 'm' prefix before the filename because we really only needed in tabbed text editors to delineate
 	* files which are controllers or views, which is why controllers have the "c" prefix, while views
 	* have the "v" prefix.
 	*/
-	public function load($sModelName) {
-		$F = $this->core->base();
-		if (strpos(' ' . $sModelName,'/')>0) {
-			$sBaseName = basename($sModelName);
-			$sPath = dirname($sModelName);
-			$sPath = rtrim($sPath, '/') . '/';
-			$sModelPath = $sPath . $sBaseName . '.php';
-			$sModelName = basename($sModelName);
+	public function load($_sModelName) {
+		$_F = $this->core->base();
+		if (strpos(' ' . $_sModelName,'/')>0) {
+			$_sBaseName = basename($_sModelName);
+			$_sPath = dirname($_sModelName);
+			$_sPath = rtrim($_sPath, '/') . '/';
+			$_sModelPath = $_sPath . $_sBaseName . '.php';
+			$_sModelName = basename($_sModelName);
 		} else {
-			$sModelPath = $sModelName . '.php';
+			$_sModelPath = $_sModelName . '.php';
 		}
-		if (!file_exists($F . '/app/_models')) {
+		if (!file_exists($_F . '/app/_models')) {
 			trigger_error('Your folder layout is missing a app/_models folder',E_USER_ERROR);
 		}
-		$sPath = $F . '/app/_models/' . $sModelPath;
-		if (!file_exists($sPath)) {
-			trigger_error('Your folder layout is missing a "' . $sPath . '" models file',E_USER_ERROR);
+		$_sPath = $_F . '/app/_models/' . $_sModelPath;
+		if (!file_exists($_sPath)) {
+			trigger_error('Your folder layout is missing a "' . $_sPath . '" models file',E_USER_ERROR);
 		}
-		require_once($sPath);
-		$o = new $sModelName();
-		$o->core = $this->core;
-		$o->request = $this;
-		$o->model = $this;
-		$o->view = $this->view;
-		$o->data = $this->data;		
-		return $o;
+		unset($_sBaseName);
+		unset($_sModelPath);
+		unset($_F);
+		require_once($_sPath);
+		$_o = new $_sModelName();
+		$_o->core = $this->core;
+		$_o->request = $this;
+		$_o->model = $this;
+		$_o->view = $this->view;
+		$_o->data = $this->data;		
+		return $_o;
 	}	
+	
 }
 
 
@@ -1040,37 +1133,43 @@ class Faster_View {
 	/**
 	* Renders our view with variables intact, and then returns as a string. The view uses PHP
 	* Alternative Syntax.
+	*
+	* Note all variables use underscores so as not to pass them to the view file. This is
+	* just a precautionary failsafe. We do an unset() on all variables we can before the
+	* require_once() call.
 	* 
-	* @param string $sFile A specified file path to the view. If not specified, it will assume the
+	* @param string $_sFile A specified file path to the view. If not specified, it will assume the
 	* same path as the controller path, but with "v" instead of "c" on the final file prefix.
-	* @param bool $bDrawImmediately Defines whether to cache the view until all elements are drawn
+	* @param bool $_bDrawImmediately Defines whether to cache the view until all elements are drawn
 	* to the browser, and then show it, or show it as it is built.
 	*/
-	public function render($sFile = '', $bDrawImmediately = FALSE) {
-		$F = $this->core->base();	
-		if (empty($sFile)) {
-			$sFile = $this->_request->getGroup() . '/' . $this->_request->getAction();
+	public function render($_sFile = '', $_bDrawImmediately = FALSE) {
+		$_F = $this->core->base();	
+		if (empty($_sFile)) {
+			$_sFile = $this->_request->getGroup() . '/' . $this->_request->getAction();
 		}
-		$sFile = strrev($sFile);
-		$sFile = str_replace('/','~',$sFile);
-		$sFile = preg_replace('/~/','v~',$sFile,1);
-		$sFile = str_replace('~','/',$sFile);
-		$sFile = strrev($sFile);
-		if (!$bDrawImmediately) {
+		$_sFile = strrev($_sFile);
+		$_sFile = str_replace('/','~',$_sFile);
+		$_sFile = preg_replace('/~/','v~',$_sFile,1);
+		$_sFile = str_replace('~','/',$_sFile);
+		$_sFile = strrev($_sFile);
+		if (!$_bDrawImmediately) {
 			ob_start();
 		}
-		if (!file_exists($F . '/app/_views')) {
+		if (!file_exists($_F . '/app/_views')) {
 			trigger_error('Your folder layout is missing a app/_views folder',E_USER_ERROR);
 		}
-		$sPath = $F . '/app/_views/' . $sFile . '.php';
-		if (!file_exists($sPath)) {
-			trigger_error('Your folder layout is missing a "' . $sPath . '" views file',E_USER_ERROR);
+		$_sPath = $_F . '/app/_views/' . $_sFile . '.php';
+		if (!file_exists($_sPath)) {
+			trigger_error('Your folder layout is missing a "' . $_sPath . '" views file',E_USER_ERROR);
 		}
-		require_once($sPath);
-		if (!$bDrawImmediately) {
-			$sOut = ob_get_contents();
+		unset($_F);
+		unset($_sFile);
+		require_once($_sPath);
+		if (!$_bDrawImmediately) {
+			$_sOut = ob_get_contents();
 			ob_end_clean();
-			return $sOut;
+			return $_sOut;
 		}
 	}
 
