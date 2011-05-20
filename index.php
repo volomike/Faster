@@ -460,22 +460,16 @@ class Faster_Request extends Faster {
 			array_shift($asParams);
 			array_shift($asParams);
 			foreach($asParams as $sKey => $sVal) {
-				$sTest = 'xxx##77' . $sVal;
-				if (strpos(' ' . $sTest, 'xxx##77--')>0) {
-					$sTest = str_replace('xxx##77--','',$sTest);
-					$asParams[$sKey] = $sTest;
-				}
-				$sTest = 'xxx##77' . $sVal . 'xxx##77';
-				if (strpos(' ' . $sTest, 'xxx#77"')>0) {
-					$sTest = str_replace('xxx##77"','',$sTest);
-					$sTest = str_replace('"xxx##77','',$sTest);
-					$asParams[$sKey] = $sTest;
-				}
-				$sTest = 'xxx##77' . $sVal . 'xxx##77';
-				if (strpos(' ' . $sTest, "xxx#77'")>0) {
-					$sTest = str_replace("xxx##77'",'',$sTest);
-					$sTest = str_replace("'xxx##77",'',$sTest);
-					$asParams[$sKey] = $sTest;
+				$sVal = preg_replace('/^--/','',$sVal);
+				$asParams[$sKey] = $sVal;
+				if ((substr($sVal, 0, 1) == '"') and (substr($sVal, -1, 1) == '"')) {
+					$sVal = ltrim($sVal, '"');
+					$sVal = rtrim($sVal, '"');
+					$asParams[$sKey] = $sVal;
+				} else if ((substr($sVal, 0, 1) == "'") and (substr($sVal, -1, 1) == "'")) {
+					$sVal = ltrim($sVal, "'");
+					$sVal = rtrim($sVal, "'");
+					$asParams[$sKey] = $sVal;
 				}
 			}
 			$this->_params = $asParams;
