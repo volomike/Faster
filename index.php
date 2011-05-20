@@ -460,8 +460,10 @@ class Faster_Request extends Faster {
 			array_shift($asParams);
 			array_shift($asParams);
 			foreach($asParams as $sKey => $sVal) {
-				$sVal = preg_replace('/^--/','',$sVal);
-				$asParams[$sKey] = $sVal;
+				if (substr($sVal, 0, 2) == '--') {
+					$sVal = preg_replace('/^--/','',$sVal);
+					$asParams[$sKey] = $sVal;
+				}
 				if ((substr($sVal, 0, 1) == '"') and (substr($sVal, -1, 1) == '"')) {
 					$sVal = ltrim($sVal, '"');
 					$sVal = rtrim($sVal, '"');
