@@ -9,7 +9,7 @@
 * @package Faster-Framework-API
 * @author Volo, LLC
 * @link http://volosites.com/
-* @version 1.02
+* @version 1.03
 */
 
 // SPEED UP PHP BY TURNING OFF UNNECESSARY ASP TAG PARSING
@@ -112,6 +112,10 @@ error_reporting($sErrReporting);
 *
 */
 define('FRAMEWORK_LOADED',TRUE);
+
+$sBase = $mvc->core->base();
+define('HEADER',$sBase . '/app/_views/HEADER.php');
+define('FOOTER',$sBase . '/app/_views/FOOTER.php');
 
 // handle our front controller task
 $bStopWhenRouted = TRUE;
@@ -613,7 +617,10 @@ class Faster_Request extends Faster {
 			}
 			$_sPath = $_F . '/app/_controllers/' . $_sGroup . '/c' . $_sAction . '.php';
 			if (!file_exists($_sPath)) {
-				trigger_error('Your folder layout is missing a "' . $_sPath . '" controller file', E_USER_ERROR);
+				$_sPath = $_F . '/app/_controllers/' . $_sGroup . '/c' . $_sGroup . '.php';
+				if (!file_exists($_sPath)) {
+					trigger_error('Your folder layout is missing a "' . $_sPath . '" controller file', E_USER_ERROR);
+				}
 			}
 			unset($_sWhichController);
 			unset($_F);
@@ -1159,9 +1166,22 @@ class Faster_View {
 		if (!file_exists($_sPath)) {
 			trigger_error('Your folder layout is missing a "' . $_sPath . '" views file',E_USER_ERROR);
 		}
-		unset($_F);
-		unset($_sFile);
-		require_once($_sPath);
+		if (file_exists($_sPath)) {
+			unset($_F);
+			unset($_sFile);
+			require_once($_sPath);
+		} else {
+			$_sFile = $this->_request->getGroup() . '/' . $this->_request->getGroup();
+			$_sFile = strrev($_sFile);
+			$_sFile = str_replace('/','~',$_sFile);
+			$_sFile = preg_replace('/~/','v~',$_sFile,1);
+			$_sFile = str_replace('~','/',$_sFile);
+			$_sFile = strrev($_sFile);
+			$_sPath = $_F . '/app/_views/' . $_sFile . '.php';
+			unset($_F);
+			unset($_sFile);
+			require_once($_sPath);
+		}
 		if (!$_bDrawImmediately) {
 			$_sOut = ob_get_contents();
 			ob_end_clean();

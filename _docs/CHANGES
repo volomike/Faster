@@ -1,10 +1,18 @@
 Faster - A Minimal PHP MVC Framework
 Copyright (c) 2011, Volo, LLC (http://volosites.com/) - Mike McKee
 All rights reserved. BSD License.
-Version 1.02
+Version 1.03
 
 CHANGES
 ***********************************
+
+1.03
+*********************************** 
+- Noticed that all these cDefault.php and vDefault.php files would be very confusing. I fixed this
+  by permitting an alternative way. So, if you have an /about page, then the folder would be "About"
+  and the files could be cAbout.php for the controller, and vAbout.php for the view. This lets you
+  know which file is which in a tabbed text editor without confusion. The system will first look for
+  cDefault.php, and, not finding that, would look for cAbout.php, and the same thing for the view.
 
 1.02
 *********************************** 
