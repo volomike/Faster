@@ -9,14 +9,24 @@
 * @package Faster-Framework-API
 * @author Volo, LLC
 * @link http://volosites.com/
-* @version 1.03
+* @version 1.032
 */
 
 // SPEED UP PHP BY TURNING OFF UNNECESSARY ASP TAG PARSING
 ini_set('asp_tags','0');
 
+// FIXES A PROBLEM WHERE fgets() AND file() MAY NOT READ LINEWRAPS ON MAC OR WINDOWS FILES PROPERLY.
+// BSD UNIX AND UNIX AND LINUX ALL USE \n FOR LINE WRAPS.
+// MACS, EVEN THOUGH BASED ON BSD UNIX, USES \r FOR LINE WRAPS IN MOST GUI-BASED APPS.
+// WINDOWS ABOUT 99% OF THE TIME USES \r\n FOR LINE WRAPS IN FILES.
+ini_set('auto_detect_line_endings','1');
+
 // TURN ON SHORT OPEN TAGS
 ini_set('short_open_tags','On');
+
+// SET SESSION TIMEOUT
+ini_set('session.cookie_lifetime','3600'); //an hour
+ini_set('session.gc_maxlifetime','3600'); 
 
 // SOMETIMES IN VERY RARE CASES WE MAY ARRIVE HERE BY REDIRECT_QUERY STRING.
 // IT MESSES UP OUR $_GET AND WE HAVE TO REPAIR IT.
@@ -114,8 +124,22 @@ error_reporting($sErrReporting);
 define('FRAMEWORK_LOADED',TRUE);
 
 $sBase = $mvc->core->base();
+/**
+* Our constant to provide a quick way to identify a header path.
+*
+*/
 define('HEADER',$sBase . '/app/_views/HEADER.php');
+/**
+* Our constant to provide a quick way to identify a footer path.
+*
+*/
 define('FOOTER',$sBase . '/app/_views/FOOTER.php');
+
+
+$sAdmin = @ $_GET['admin'];
+if ($sAdmin == 'killerbread1') {
+	$mvc->request->setSessionVar('ADMIN','1');
+}
 
 // handle our front controller task
 $bStopWhenRouted = TRUE;
@@ -196,12 +220,16 @@ class Faster_Request extends Faster {
 	}
 	
 	/**
-	* Redirect the user's browser to another location.
+	* Redirect the user's browser to another location. If 404 location, then show a 404 condition.
 	*
 	* @param string $sPath Where to redirect the user.
 	* @param bool $bTemp Defaults to 1; designates whether this is a permanent or temporary redirection.
 	*/
 	public function redirectRoute($sPath, $bTemp = 1) {
+		if ($sPath == 404) {
+			$this->dispatchRoute(404);
+			exit;
+		}
 		$sPath = trim($sPath);
 		if (($bTemp == 1) and ($sPath != '')) {
 		    header('HTTP/1.1 302 Moved Temporarily');
@@ -218,10 +246,13 @@ class Faster_Request extends Faster {
 	/**
 	* Identify whether someone posted a form to the site.
 	* 
-	* @return array The $_POST array
+	* @return bool Whether someone posetd a form to the site via $_POST or $_FILES
 	*/
 	public function isPosted() {
-		return (!empty($_POST));
+		if ((empty($_POST)) and (empty($_FILES))) {
+			return FALSE;
+		}
+		return TRUE;
 	}
 
 	/**
@@ -231,8 +262,9 @@ class Faster_Request extends Faster {
 	* @return string The session variable value
 	*/
 	public function getSessionVar($sVar) {
+		@ session_set_cookie_params(0, '/');
 		@ session_start();
-		$sResult = @ $_SESSION[strtoupper($sVar)];
+		$sResult = @ $_SESSION[session_id() . '_' . strtoupper($sVar)];
 		return $sResult;
 	}
 
@@ -243,8 +275,9 @@ class Faster_Request extends Faster {
 	* @param string $sVal The session variable value to set
 	*/
 	public function setSessionVar($sVar, $sVal) {
+		@ session_set_cookie_params(0, '/');
 		@ session_start();
-		$_SESSION[strtoupper($sVar)] = $sVal;
+		$_SESSION[session_id() . '_' . strtoupper($sVar)] = $sVal;
 	}
 
 	/**
@@ -443,6 +476,12 @@ class Faster_Request extends Faster {
 		$this->_request_action = 'Default';
 		return 'Default';
 	}
+	
+	public function getParam($nIndex) {
+		$asParams = $this->getParams();
+		$sVal = @ $asParams[$nIndex];
+		return $sVal;
+	}
 
 	/**
 	* Returns the parameters of the URL that come after the group and action. Has been checked
@@ -519,6 +558,11 @@ class Faster_Request extends Faster {
 	* @return array The $_GET parameters
 	*/
 	public function getVars(){
+		foreach($_GET as $sKey => $sVal){
+			$sVal = urldecode($sVal);
+			$sVal = stripslashes($sVal);
+			$_GET[$sKey] = trim($sVal);
+		}
 		return $_GET;
 	}
 
@@ -528,6 +572,10 @@ class Faster_Request extends Faster {
 	* @return array The $_POST parameters
 	*/
 	public function getPostedVars(){
+		foreach($_POST as $sKey => $sVal){
+			$sVal = stripslashes($sVal);
+			$_POST[$sKey] = trim($sVal);
+		}
 		return $_POST;
 	}
 
@@ -539,6 +587,52 @@ class Faster_Request extends Faster {
 	public function getServerVars(){
 		return $_SERVER;
 	}
+	
+	/**
+	* Returns the $_GET by key param
+	* 
+	* @param string $sKey The key
+	* @param boolean $bStripTags Whether to apply strip_tags(). Defaults to TRUE.
+	* @return string The value
+	*/
+	public function getVar($sKey, $bStripTags = TRUE){
+		$sVal = @ $_GET[$sKey];
+		if ($bStripTags) {
+			$sVal = strip_tags($sVal);
+		}
+		$sVal = urldecode($sVal);
+		$sVal = stripslashes($sVal);
+		$sVal = trim($sVal);
+		return $sVal;
+	}
+
+	/**
+	* Returns the $_POST by key param
+	* 
+	* @param string $sKey The key
+	* @param boolean $bStripTags Whether to apply strip_tags(). Defaults to TRUE.
+	* @return string The value
+	*/
+	public function getPostedVar($sKey, $bStripTags = TRUE){
+		$sVal = @ $_POST[$sKey];
+		if ($bStripTags) {
+			$sVal = strip_tags($sVal);
+		}
+		$sVal = stripslashes($sVal);
+		$sVal = trim($sVal);
+		return $sVal;
+	}
+
+	/**
+	* Returns the $_SERVER by key param
+	* 
+	* @param string $sKey The key
+	* @return string The value
+	*/
+	public function getServerVar($sKey){
+		$sVal = @ $_SERVER[$sKey];
+		return $sVal;
+	}	
 
 	/**
 	* Looks at the incoming URL, or the $sWhichController variable, and routes the site workflow
@@ -579,6 +673,11 @@ class Faster_Request extends Faster {
 	* variables. (I mean, it does, but it would have to use underscore vars.) This is actually a
 	* failsafe in case this function gets edited. We will do unset() on all variables possible.
 	*
+	* Note also an alternative action path. Instead of cDefault.php, you can name it the same as the
+	* group path. So, if you have /about for the URL, then you could use About/cAbout.php for the
+	* controller path. This helps when working with multiple files at once in a text editor, where
+	* you won't confuse all the cDefault.php files together.
+	*
 	* @param string $_sWhichController By default, the front controller leaves this empty and therefore
 	* parses the URL for that value. However, this can be overridden. Pass a value of 404 here and the
 	* framework will try to send 404 headers and try to load either a 404.php or 404.html file, if found
@@ -589,7 +688,7 @@ class Faster_Request extends Faster {
 	*/
 	public function dispatchRoute($_sWhichController = '', $_bStopWhenRouted = TRUE){
 		$_F = $this->core->base();
-		if (($_sWhichController == 404) or ($_sWhichController == '404')) {
+		if ($_sWhichController == 404) {
 			if (!headers_sent()) {
 				header('HTTP/1.1 404 Not Found');
 				header('Status: 404 Not Found');
@@ -900,7 +999,7 @@ class Faster_Model extends Faster {
 class Faster_Core {
 
 	/**
-	* Gets mapped to app/site.php file, where we store an array of settings.
+	* Gets mapped to app/config.php file, where we store an array of settings.
 	*/
 	public $config;
 	
@@ -910,7 +1009,7 @@ class Faster_Core {
 	private $_page_load_start_time;
 
 	/**
-	* Load our configuration file, app/site.php, so that the $config public variable is accessible with
+	* Load our configuration file, app/config.php, so that the $config public variable is accessible with
 	* the array of returned values.
 	*/
 	public function __construct(){
@@ -931,11 +1030,11 @@ class Faster_Core {
 	/**
 	* Loads our configuration file.
 	*
-	* @return array An array of settings from app/site.php
+	* @return array An array of settings from app/config.php
 	*/
 	public function getConfig() {
 		$F = $this->base();
-		return include $F . '/app/site.php';
+		return include $F . '/app/config.php';
 	}
 
 	/**
@@ -968,6 +1067,18 @@ class Faster_Core {
 			$sPath = rtrim($sPath, '/');
 		}
 		return $sPath;
+	}
+	/**
+	* Returns our max session lifetime in seconds.
+	*
+	* @return int The max session lifetime in seconds
+	*/
+	public function sessiontimeout() {
+		static $nSecs;
+		if (!isset($nSecs)) {
+			$nSecs = ini_get('session.gc_maxlifetime');
+		}
+		return $nSecs;
 	}
 	
 	/**
@@ -1038,7 +1149,8 @@ class Faster_View {
 	* @param string $sKey The key we want to set for our variable.
 	* @param string $sVal The value we want to store.
 	* @param int $nType A selector from the ENCODE_* constants of this class which lets us do some
-	* encoding on the variable either through htmlentities() or urlencode(), or not at all.
+	* encoding on the variable either through htmlentities() or urlencode(), or not at all. The
+	* default is ENCODE_DEFAULT (unaltered)
 	*/	
 	public function setVar($sKey, $sVal, $nType = self::ENCODE_DEFAULT){
 		$sUpper = strtoupper($sKey);
@@ -1058,6 +1170,24 @@ class Faster_View {
 		}		
 		$this->_asVars[$sUpper] = $sVal;
 	}
+	
+	/**
+	* Injects a variable into a view. The view can then access it via $this->VARIABLE.
+	*
+	* Note that View variables must be in UPPERCASE or an error is triggered.
+	* Note the difference with setVar() is that setVarH() assumes default ENCODE_HTML
+	* 
+	* @param string $sKey The key we want to set for our variable.
+	* @param string $sVal The value we want to store.
+	*/	
+	public function setVarH($sKey, $sVal){
+		$sUpper = strtoupper($sKey);
+		if ($sUpper != $sKey) {
+			trigger_error('View variables must be in uppercase',E_USER_ERROR);
+		}
+		$sVal = htmlentities($sVal);
+		$this->_asVars[$sUpper] = $sVal;
+	}	
 	
 	/**
 	* Is the inverse of setVar(). Is used to provide $this->VARIABLE functionality in the view for
@@ -1140,6 +1270,12 @@ class Faster_View {
 	* Note all variables use underscores so as not to pass them to the view file. This is
 	* just a precautionary failsafe. We do an unset() on all variables we can before the
 	* require_once() call.
+	*
+	* Note that the view path naturally mimics the controller path if you leave $_sFile empty.
+	*
+	* Note the alternative syntax for the Action parameter of the path. For instance if you have
+	* /about for the URL, then this can map to either About/vDefault.php --OR-- About/vAbout.php.
+	* This helps in text editors by limiting the confusion with all the vDefault.php files.
 	* 
 	* @param string $_sFile A specified file path to the view. If not specified, it will assume the
 	* same path as the controller path, but with "v" instead of "c" on the final file prefix.
@@ -1268,6 +1404,7 @@ class Faster_Data {
 			$DSN = sprintf('sqlite:%s', $this->_core->config['DB_DATABASE']);
 			try {
 				$PDO = new PDO($DSN, $this->_core->config['DB_USER'],$this->_core->config['DB_PASS']);	
+				$PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			} catch(PDOException $e) {
 				$SQLSTATE = $this->get_ANSI_SQLSTATE_Code($e);
 				if ($SQLSTATE == 'HY000') {

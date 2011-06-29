@@ -1,10 +1,30 @@
 Faster - A Minimal PHP MVC Framework
 Copyright (c) 2011, Volo, LLC (http://volosites.com/) - Mike McKee
 All rights reserved. BSD License.
-Version 1.03
+Version 1.032
 
 CHANGES
 ***********************************
+
+1.032
+*********************************** 
+- Renamed site.php to config.php and changed all references of site.php to config.php. Made more
+  sense, and one of the earlier forks of Faster (before it was named that) did this.
+- Fixed bug in SQLite connection code where we failed to set exception mode. This fixes problems
+  where we get meaningless non-object errors simply because SQL syntax is incorrect.
+- Added a default 1 hour session timeout. This can be changed by the user by editing index.php near
+  the top.
+- Changed getPostedVars(), getVars(), getPostVar(), and getVar() so that they apply trim() and
+  stripslashes(), and may also do urldecode() (in the case of $_GET). As well, it does strip_tags()
+  by default but this can be set to FALSE -- it's a new parameter. Meanwhile, those who want an
+  override (like raw), can go access $_POST and $_GET without the function wrapper.
+
+1.031
+*********************************** 
+- Added HEADER and FOOTER constants as shortcuts to get to a preferred header or footer path in the
+  views.
+- Added getVar($sKey), getPostedVar($sKey), getParam($nIndex), and getServerVar($sKey) in 
+  Faster_Request.
 
 1.03
 *********************************** 

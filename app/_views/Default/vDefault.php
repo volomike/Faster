@@ -17,11 +17,22 @@
 HTML,BODY {
 margin:0;
 padding:0;
-background:#00638d;
 font-family:'Liberation Sans', Helvetica, Arial, sans, sans-serif;
 font-size:13px;
 }
-BODY {
+HTML {
+background:#00638d;
+}
+#overlay {
+background: 
+-webkit-radial-gradient(rgba(127, 127, 127, 0.3), rgba(127, 127, 127, 0.3) 35%, rgba(0, 0, 0, 0.4));
+background:
+-moz-radial-gradient(rgba(127, 127, 127, 0.3), rgba(127, 127, 127, 0.3) 35%, rgba(0, 0, 0, 0.4));
+overflow:hidden;
+-o-radial-gradient(rgba(127, 127, 127, 0.3), rgba(127, 127, 127, 0.3) 35%, rgba(0, 0, 0, 0.4));
+overflow:hidden;
+}
+#content {
 margin:20px auto;
 width:960px;
 background:#eaf4f8;
@@ -47,7 +58,7 @@ font-size:22px;
 font-weight:bold;
 padding:5px;
 }
-BODY P {
+#content P {
 padding-left:20px;
 padding-right:20px;
 }
@@ -58,39 +69,42 @@ font-size:11px;
 color:#AAA;
 text-align:center;
 position:absolute;
-bottom:-80px;
+bottom:-360px;
 margin-left:40px;
 }
 </style>
 </head>
 <body>
+<div id="overlay">
+	<div id="content">
 
-<div id="header">
-Faster -- A Minimalist PHP MVC Framework v.1.03
-</div><!-- #header -->
+		<div id="header">
+		Faster -- A Minimalist PHP MVC Framework v.1.032
+		</div><!-- #header -->
 
-<p>&nbsp;</p>
+		<p>&nbsp;</p>
 
-<p><a target="_blank" href="_docs/api-viewer/">API Viewer</a></p>
+		<p><a target="_blank" href="_docs/api-viewer/">API Viewer</a></p>
 
-<p>&nbsp;</p>
+		<p>&nbsp;</p>
 
-<p>Short Framework Test:</p>
-<p>RESULT = <?= $this->RESULT ?></p>
+		<p>Short Framework Test:</p>
+		<p>RESULT = <?= $this->RESULT ?></p>
 
-<? if (!$this->RESULT): ?>
-<p>Try adding /Mike on the end of the URL so that you pass a parameter to the database.</p>
-<? endif; ?>
+		<? if (!$this->RESULT): ?>
+		<p>Try adding /Mike on the end of the URL so that you pass a parameter to the database.</p>
+		<? endif; ?>
 
-<p>BASE PATH = <?= $this->core->base() ?></p>
-<p>BASE URL = <?= $this->core->baseurl() ?></p>
-<p>PAGE LOADING TIME = <?= $this->core->page_load_time() ?> seconds</p>
+		<p>BASE PATH = <?= $this->core->base() ?></p>
+		<p>BASE URL = <?= $this->core->baseurl() ?></p>
+		<p>PAGE LOADING TIME = <?= $this->core->page_load_time() ?> seconds</p>
 
-<div id="footer">
-USA Copyright &copy; 2011, Volo, LLC (http://volosites.com/) All rights reserved. BSD License.
-</div>
+		<div id="footer">
+		USA Copyright &copy; 2011, Volo, LLC (http://volosites.com/) All rights reserved. BSD License.
+		</div><!-- #footer -->
 
-
+	</div><!-- #content -->
+</div><!-- #overlay -->
 </body>
 </html>
 

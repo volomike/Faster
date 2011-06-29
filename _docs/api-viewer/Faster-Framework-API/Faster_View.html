@@ -26,7 +26,7 @@
         		<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">This class handles our view details.</p>
 		<p class="notes">
-			Located in <a class="field" href="_index.php.html">/index.php</a> (line <span class="field">989</span>)
+			Located in <a class="field" href="_index.php.html">/index.php</a> (line <span class="field">1103</span>)
 		</p>
 		
 				
@@ -106,7 +106,7 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																																												
+																																																																				
 												<div class="method-definition">
 											<span class="method-result">void</span>
 										<a href="#display" title="details" class="method-name">display</a>
@@ -131,6 +131,11 @@
 											<span class="method-result">void</span>
 										<a href="#setVar" title="details" class="method-name">setVar</a>
 											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sKey</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$sVal</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$nType</span> = <span class="var-default">self::ENCODE_DEFAULT</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setVarH" title="details" class="method-name">setVarH</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$sKey</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$sVal</span>)
 									</div>
 																<div class="method-definition">
 											<span class="method-result">void</span>
@@ -162,13 +167,13 @@
 					</div>
 		<div class="info-box-body">
 			<a name="var$core" id="$core"><!-- --></A>
-<div class="oddrow">
+<div class="evenrow">
 
 	<div class="var-header">
 		<span class="var-title">
 			<span class="var-type">mixed</span>
 			<span class="var-name">$core</span>
-						(line <span class="line-number">995</span>)
+						(line <span class="line-number">1109</span>)
 		</span>
 	</div>
 
@@ -202,10 +207,10 @@
 			<A NAME='method_detail'></A>
 
 <a name="methoddisplay" id="display"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">display</span> (line <span class="line-number">1185</span>)
+		<span class="method-title">display</span> (line <span class="line-number">1337</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -234,15 +239,15 @@
 			
 	</div>
 <a name="methodrender" id="render"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">render</span> (line <span class="line-number">1146</span>)
+		<span class="method-title">render</span> (line <span class="line-number">1285</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Renders our view with variables intact, and then returns as a string. The view uses PHP  Alternative Syntax.</p>
-<p class="description"><p>Note all variables use underscores so as not to pass them to the view file. This is  just a precautionary failsafe. We do an unset() on all variables we can before the  require_once() call.</p></p>
+<p class="description"><p>Note all variables use underscores so as not to pass them to the view file. This is  just a precautionary failsafe. We do an unset() on all variables we can before the  require_once() call.</p><p>Note that the view path naturally mimics the controller path if you leave $_sFile empty.</p><p>Note the alternative syntax for the Action parameter of the path. For instance if you have  /about for the URL, then this can map to either About/vDefault.php --OR-- About/vAbout.php.  This helps in text editors by limiting the confusion with all the vDefault.php files.</p></p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -267,10 +272,10 @@
 			
 	</div>
 <a name="methodsetCVar" id="setCVar"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">setCVar</span> (line <span class="line-number">1086</span>)
+		<span class="method-title">setCVar</span> (line <span class="line-number">1219</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -303,10 +308,10 @@
 			
 	</div>
 <a name="methodsetCVars" id="setCVars"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">setCVars</span> (line <span class="line-number">1114</span>)
+		<span class="method-title">setCVars</span> (line <span class="line-number">1247</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -335,10 +340,10 @@
 			
 	</div>
 <a name="methodsetVar" id="setVar"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">setVar</span> (line <span class="line-number">1040</span>)
+		<span class="method-title">setVar</span> (line <span class="line-number">1155</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -365,7 +370,40 @@
 				<span class="var-name">$sVal</span><span class="var-description">: The value we want to store.</span>			</li>
 					<li>
 				<span class="var-type">int</span>
-				<span class="var-name">$nType</span><span class="var-description">: A selector from the ENCODE_* constants of this class which lets us do some  encoding on the variable either through htmlentities() or urlencode(), or not at all.</span>			</li>
+				<span class="var-name">$nType</span><span class="var-description">: A selector from the ENCODE_* constants of this class which lets us do some  encoding on the variable either through htmlentities() or urlencode(), or not at all. The  default is ENCODE_DEFAULT (unaltered)</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetVarH" id="setVarH"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setVarH</span> (line <span class="line-number">1183</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Injects a variable into a view. The view can then access it via $this-&gt;VARIABLE.</p>
+<p class="description"><p>Note that View variables must be in UPPERCASE or an error is triggered.  Note the difference with setVar() is that setVarH() assumes default ENCODE_HTML</p></p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setVarH
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$sKey</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$sVal</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sKey</span><span class="var-description">: The key we want to set for our variable.</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$sVal</span><span class="var-description">: The value we want to store.</span>			</li>
 				</ul>
 		
 			
@@ -374,7 +412,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">setVars</span> (line <span class="line-number">1127</span>)
+		<span class="method-title">setVars</span> (line <span class="line-number">1260</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -406,7 +444,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">__get</span> (line <span class="line-number">1067</span>)
+		<span class="method-title">__get</span> (line <span class="line-number">1200</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -458,7 +496,7 @@
 		<span class="const-title">
 			<span class="const-name">ENCODE_DEFAULT</span>
 			 = <span class="const-default"> 0</span>
-			(line <span class="line-number">1009</span>)
+			(line <span class="line-number">1123</span>)
 		</span>
 	</div>
 
@@ -475,7 +513,7 @@
 		<span class="const-title">
 			<span class="const-name">ENCODE_HTML</span>
 			 = <span class="const-default"> 1</span>
-			(line <span class="line-number">1013</span>)
+			(line <span class="line-number">1127</span>)
 		</span>
 	</div>
 
@@ -492,7 +530,7 @@
 		<span class="const-title">
 			<span class="const-name">ENCODE_URL</span>
 			 = <span class="const-default"> 2</span>
-			(line <span class="line-number">1017</span>)
+			(line <span class="line-number">1131</span>)
 		</span>
 	</div>
 
@@ -506,7 +544,7 @@
 	</div>
 
 	<p class="notes" id="credit">
-		Documentation generated on Thu, 19 May 2011 16:25:01 -0400 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Wed, 29 Jun 2011 18:43:31 -0400 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>

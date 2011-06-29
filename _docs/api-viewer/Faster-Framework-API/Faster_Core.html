@@ -24,7 +24,7 @@
         		<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">This class is for common class methods for things not dealing with requests, views, data, or  models.</p>
 		<p class="notes">
-			Located in <a class="field" href="_index.php.html">/index.php</a> (line <span class="field">897</span>)
+			Located in <a class="field" href="_index.php.html">/index.php</a> (line <span class="field">999</span>)
 		</p>
 		
 				
@@ -67,7 +67,7 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																												
+																																																				
 												<div class="method-definition">
 											<span class="method-result">Faster_Core</span>
 										<a href="#__construct" title="details" class="method-name">__construct</a>
@@ -91,6 +91,11 @@
 																<div class="method-definition">
 											<span class="method-result">int</span>
 										<a href="#page_load_time" title="details" class="method-name">page_load_time</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">int</span>
+										<a href="#sessiontimeout" title="details" class="method-name">sessiontimeout</a>
 										()
 									</div>
 								</div>
@@ -117,12 +122,12 @@
 		<span class="var-title">
 			<span class="var-type">mixed</span>
 			<span class="var-name">$config</span>
-						(line <span class="line-number">902</span>)
+						(line <span class="line-number">1004</span>)
 		</span>
 	</div>
 
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Gets mapped to app/site.php file, where we store an array of settings.</p>
+<p class="short-description">Gets mapped to app/config.php file, where we store an array of settings.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -152,11 +157,11 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">Constructor __construct</span> (line <span class="line-number">913</span>)
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">1015</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Load our configuration file, app/site.php, so that the $config public variable is accessible with  the array of returned values.</p>
+<p class="short-description">Load our configuration file, app/config.php, so that the $config public variable is accessible with  the array of returned values.</p>
 	<ul class="tags">
 				<li><span class="field">access:</span> public</li>
 			</ul>
@@ -176,7 +181,7 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">base</span> (line <span class="line-number">961</span>)
+		<span class="method-title">base</span> (line <span class="line-number">1063</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -201,7 +206,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">baseurl</span> (line <span class="line-number">943</span>)
+		<span class="method-title">baseurl</span> (line <span class="line-number">1045</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -226,13 +231,13 @@
 <div class="oddrow">
 	
 	<div class="method-header">
-		<span class="method-title">getConfig</span> (line <span class="line-number">933</span>)
+		<span class="method-title">getConfig</span> (line <span class="line-number">1035</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Loads our configuration file.</p>
 	<ul class="tags">
-				<li><span class="field">return:</span> An array of settings from app/site.php</li>
+				<li><span class="field">return:</span> An array of settings from app/config.php</li>
 				<li><span class="field">access:</span> public</li>
 			</ul>
 	
@@ -251,7 +256,7 @@
 <div class="evenrow">
 	
 	<div class="method-header">
-		<span class="method-title">page_load_time</span> (line <span class="line-number">975</span>)
+		<span class="method-title">page_load_time</span> (line <span class="line-number">1089</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -272,13 +277,38 @@
 		
 			
 	</div>
+<a name="methodsessiontimeout" id="sessiontimeout"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">sessiontimeout</span> (line <span class="line-number">1076</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns our max session lifetime in seconds.</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> The max session lifetime in seconds</li>
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			sessiontimeout
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
 						
 		</div>
 	</div>
 
 
 	<p class="notes" id="credit">
-		Documentation generated on Thu, 19 May 2011 16:25:00 -0400 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+		Documentation generated on Wed, 29 Jun 2011 18:43:30 -0400 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
 	</p>
 	</div></body>
 </html>
