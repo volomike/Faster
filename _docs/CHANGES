@@ -1,10 +1,14 @@
 Faster - A Minimal PHP MVC Framework
 Copyright (c) 2011, Volo, LLC (http://volosites.com/) - Mike McKee
 All rights reserved. BSD License.
-Version 1.032
+Version 1.033
 
 CHANGES
 ***********************************
+
+1.033
+*********************************** 
+- Fixed MySQL connection string bug. Was a minor bug and the code still worked anyway.
 
 1.032
 *********************************** 
