@@ -9,7 +9,7 @@
 * @package Faster-Framework-API
 * @author Volo, LLC
 * @link http://volosites.com/
-* @version 1.032
+* @version 1.033
 */
 
 // SPEED UP PHP BY TURNING OFF UNNECESSARY ASP TAG PARSING
@@ -1369,7 +1369,7 @@ class Faster_Data {
 		if (!$PDO) {
 			$sPort = @ $this->_core->config['DB_PORT'];
 			$sPort = (empty($sPort)) ? '3306' : $sPort;
-			$DSN = sprintf('mysql:dbname=%s;host=%s;port=$sPort', $this->_core->config['DB_DATABASE'], $this->_core->config['DB_SERVER'], $sPort);
+			$DSN = sprintf('mysql:dbname=%s;host=%s;port=%s', $this->_core->config['DB_DATABASE'], $this->_core->config['DB_SERVER'], $sPort);
 			try {
 				$PDO = new PDO($DSN, $this->_core->config['DB_USER'],$this->_core->config['DB_PASS']);
 			} catch(PDOException $e) {
