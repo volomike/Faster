@@ -79,7 +79,7 @@ margin-left:40px;
 	<div id="content">
 
 		<div id="header">
-		Faster -- A Minimalist PHP MVC Framework v.1.033
+		Faster -- A Minimalist PHP MVC Framework v.1.034
 		</div><!-- #header -->
 
 		<p>&nbsp;</p>
