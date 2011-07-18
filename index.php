@@ -9,11 +9,28 @@
 * @package Faster-Framework-API
 * @author Volo, LLC
 * @link http://volosites.com/
-* @version 1.033
+* @version 1.034
 */
 
 // SPEED UP PHP BY TURNING OFF UNNECESSARY ASP TAG PARSING
 ini_set('asp_tags','0');
+
+// FIX MAGIC QUOTES IF TURNED ON
+if (get_magic_quotes_gpc()) {
+    $process = array(&$_GET, &$_POST, &$_COOKIE, &$_REQUEST);
+    while (list($key, $val) = each($process)) {
+        foreach ($val as $k => $v) {
+            unset($process[$key][$k]);
+            if (is_array($v)) {
+                $process[$key][stripslashes($k)] = $v;
+                $process[] = &$process[$key][stripslashes($k)];
+            } else {
+                $process[$key][stripslashes($k)] = stripslashes($v);
+            }
+        }
+    }
+    unset($process);
+}
 
 // FIXES A PROBLEM WHERE fgets() AND file() MAY NOT READ LINEWRAPS ON MAC OR WINDOWS FILES PROPERLY.
 // BSD UNIX AND UNIX AND LINUX ALL USE \n FOR LINE WRAPS.
@@ -554,7 +571,6 @@ class Faster_Request extends Faster {
 	public function getVars(){
 		foreach($_GET as $sKey => $sVal){
 			$sVal = urldecode($sVal);
-			$sVal = stripslashes($sVal);
 			$_GET[$sKey] = trim($sVal);
 		}
 		return $_GET;
@@ -567,7 +583,6 @@ class Faster_Request extends Faster {
 	*/
 	public function getPostedVars(){
 		foreach($_POST as $sKey => $sVal){
-			$sVal = stripslashes($sVal);
 			$_POST[$sKey] = trim($sVal);
 		}
 		return $_POST;
@@ -595,7 +610,6 @@ class Faster_Request extends Faster {
 			$sVal = strip_tags($sVal);
 		}
 		$sVal = urldecode($sVal);
-		$sVal = stripslashes($sVal);
 		$sVal = trim($sVal);
 		return $sVal;
 	}
@@ -612,7 +626,6 @@ class Faster_Request extends Faster {
 		if ($bStripTags) {
 			$sVal = strip_tags($sVal);
 		}
-		$sVal = stripslashes($sVal);
 		$sVal = trim($sVal);
 		return $sVal;
 	}
