@@ -56,5 +56,7 @@ Why consider Faster, another minimalist PHP MVC framework? For these reasons:
 * It doesn't really need a forum to interact with in order to understand it. The framework is so 
   small, and the docs are great.
   
-
-
+* This sort of MVC framework is also great for those building "sitescripts" (such as hot-or-not, FML,
+  etc. scripts). This is because it provides an easy way for clients to retheme those scripts, 
+  removes spaghetti code, and doesn't litter a directory full of confusing folders and files, or
+  include parts of an MVC framework that might not even be used.
