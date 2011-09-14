@@ -1428,6 +1428,23 @@ class Faster_Data {
 	* integrity if they don't know what they are doing in transferring a database. By using these keys
 	* instead, the data integrity remains intact.
 	*
+	* The SQL for creating this table in MySQL would be:
+	*
+	* CREATE TABLE IF NOT EXISTS `ids` (
+	* `id` char(8) COLLATE utf8_unicode_ci NOT NULL,
+	* `group` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+	* `dt_created` datetime NOT NULL,
+	* PRIMARY KEY (`id`)
+	* ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+	*
+	* ...and for SQLite would be:
+	*
+	* CREATE TABLE IF NOT EXISTS `ids` (
+	* `id` TEXT PRIMARY KEY,
+	* `group` TEXT NOT NULL,
+	* `dt_created` TEXT NOT NULL
+	* );
+	*
 	* @param object $PDO The current PDO object
 	* @param string $sTable The table by which we need this new unique ID value.
 	* @return string A unique ID for our record. It is in the format 999-ABCD and is fixed at 8
