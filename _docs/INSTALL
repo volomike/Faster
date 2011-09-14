@@ -7,3 +7,4 @@ You can override the example controllers, models, and views that come with it.
 
 Read the README for information about how to use Faster.
 
+DO NOT FORGET THE .htaccess FILE! IT'S CRITICAL AND MAKES THE URL ROUTING WORK.
