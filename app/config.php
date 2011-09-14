@@ -16,6 +16,7 @@
 * @param string DB_DATABASE The database name.
 * @param string DB_USER The user account for the database.
 * @param string DB_PASS The password for the user account for the database.
+* @param string DB_PORT The database port.
 * @return array Returns an array of configuration values.
 */
 return array(
@@ -23,11 +24,11 @@ return array(
 	'DISPLAY_ERRORS' => 'Off',
 	'COOKIE_PREFIX' => 'mvc',
 	'TIMEZONE' => 'America/New_York',
-    'DB_SERVER' => 'localhost',
-    'DB_DATABASE' => 'app/database/test.sqlite',
-    //'DB_DATABASE' => 'test',
-    'DB_USER' => 'testuser',
-    'DB_PASS' => 'testpass',
-    'MAIL_FROM' => 'noreply@example.com'
+	'DB_SERVER' => 'localhost',
+	'DB_DATABASE' => 'app/database/test.sqlite',
+	//'DB_DATABASE' => 'test',
+	//'DB_PORT' => 3306, 
+	'DB_USER' => 'testuser',
+	'DB_PASS' => 'testpass'
 );
 
