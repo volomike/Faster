@@ -1,10 +1,16 @@
 Faster - A Minimal PHP MVC Framework
 Copyright (c) 2011, Volo, LLC (http://volosites.com/) - Mike McKee
 All rights reserved. BSD License.
-Version 1.035
+Version 1.036
 
 CHANGES
 ***********************************
+
+1.036
+***********************************
+- Prevented a problem (not a bug -- it's a common user mistake) where someone creates hyperlinks with
+  .php on the end, which bungles the routing. Edited the polishAction() class method in the 
+  Faster_Request class to remove the ".php".
 
 1.035
 ***********************************
