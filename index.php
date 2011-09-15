@@ -408,6 +408,9 @@ class Faster_Request extends Faster {
 		$s = @ $asParts[1];
 		$s = ucfirst($s);
 		$s = (empty($s)) ? 'Default' : $s;
+		if (substr($s,-4) == '.php') {
+			$s = str_replace('.php','',$s);
+		}
 		return $s;	
 	}
 
