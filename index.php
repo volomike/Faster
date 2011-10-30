@@ -9,7 +9,7 @@
 * @package Faster-Framework-API
 * @author Volo, LLC
 * @link http://volosites.com/
-* @version 1.036
+* @version 1.0361
 */
 
 // SPEED UP PHP BY TURNING OFF UNNECESSARY ASP TAG PARSING
@@ -356,7 +356,7 @@ class Faster_Request extends Faster {
 	* @return string Base file path
 	*/
 	public function getPath(){
-		$sPath = str_replace('\\', '/', substr(dirname(__FILE__), strlen($_SERVER['DOCUMENT_ROOT'])));
+		$sPath = str_replace('index.php','',$_SERVER['SCRIPT_NAME']);
 		$s = @ $_SERVER['REQUEST_URI'];
 		$sTest = substr($s, 0, strlen($sPath));
 		if ($sTest == $sPath) {
@@ -1058,7 +1058,7 @@ class Faster_Core {
 			$sProtocol = empty($_SERVER['HTTPS'])? 'http' : 'https';
 			$sServerName = $_SERVER['SERVER_NAME'];
 			$sPort = $_SERVER['SERVER_PORT']=='80'? '' : ':' . $_SERVER['SERVER_PORT'];
-			$sPath = str_replace('\\', '/', substr(dirname(__FILE__), strlen($_SERVER['DOCUMENT_ROOT'])));
+			$sPath = str_replace('index.php','',$_SERVER['SCRIPT_NAME']);
 			$sPath = $sProtocol . '://' . $sServerName . $sPort . $sPath;
 			$sRoot = rtrim($sPath, '/');
 		}
