@@ -6,6 +6,11 @@ Version 1.036
 CHANGES
 ***********************************
 
+1.0361
+***********************************
+- Fixed base URL path problem in getPath() and baseurl() functions. The problem would only appear on
+  some hosts with strange configurations where DOCUMENT_ROOT was not normal.
+
 1.036
 ***********************************
 - Prevented a problem (not a bug -- it's a common user mistake) where someone creates hyperlinks with
