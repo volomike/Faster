@@ -9,7 +9,7 @@
 * @package Faster-Framework-API
 * @author Volo, LLC
 * @link http://volosites.com/
-* @version 1.0361
+* @version 1.0362
 */
 
 // SPEED UP PHP BY TURNING OFF UNNECESSARY ASP TAG PARSING
@@ -1431,6 +1431,9 @@ class Faster_Data {
 	* integrity if they don't know what they are doing in transferring a database. By using these keys
 	* instead, the data integrity remains intact.
 	*
+	* WARNING: This only provides numbers up to 47,775,744 (~ 47 million). If you need more than this,
+	* then create your own function. (BTW, 9x9x9x16x16x16x16 = 47,775,744.)
+	*
 	* The SQL for creating this table in MySQL would be:
 	*
 	* CREATE TABLE IF NOT EXISTS `ids` (
@@ -1454,10 +1457,10 @@ class Faster_Data {
 	* characters. The dash helps us identify the record faster, visually, if viewing the records
 	* in a table.
 	*/
-	public function getNewID($PDO, $sTable) {
+	public function getNewID($PDO, $sTable, $nSize = 8) {
 		$sKey = mt_rand(111,999) . '-';
-		$sKey .= dechex(mt_rand(11111,99999));
-		$sKey = substr($sKey, 0, 8); // failsafe
+		$sKey .= dechex(mt_rand(1111111111,9999999999));
+		$sKey = substr($sKey, 0, $nSize); // failsafe
 		$sKey = strtoupper($sKey);
 		$sTable = strtoupper($sTable);
 		$sDate = gmdate('Y-m-d H:i:s');
