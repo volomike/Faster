@@ -6,6 +6,12 @@ Version 1.036
 CHANGES
 ***********************************
 
+1.0362
+***********************************
+- Improved getNewID() so that it can work with a number larger than 7 digits separated by a dash. The
+  7 digit system (which is partly hex) gives you roughly 47 million IDs, but we expanded this so that
+  it can handle more.
+
 1.0361
 ***********************************
 - Fixed base URL path problem in getPath() and baseurl() functions. The problem would only appear on
