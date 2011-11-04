@@ -6,6 +6,13 @@ Version 1.036
 CHANGES
 ***********************************
 
+1.0364
+***********************************
+- Added trigesimal number range to getNewID(). If we use a size of 8 digits with a dash, and no 
+  leading zeroes, that's around 21.8 billion numbers possible. That's (7 ^ 30) - 1000000. Previously
+  this routine only generated 47 million unique numbers using the default size. Now it has a larger
+  size and more parameters to take it even larger.
+
 1.0363
 ***********************************
 - Patched a very minor problem in the comments for getNewID() where the primary key should have been 
