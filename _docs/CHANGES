@@ -6,6 +6,11 @@ Version 1.036
 CHANGES
 ***********************************
 
+1.0363
+***********************************
+- Patched a very minor problem in the comments for getNewID() where the primary key should have been 
+  a cluster of both id and group, not just id.
+
 1.0362
 ***********************************
 - Improved getNewID() so that it can work with a number larger than 7 digits separated by a dash. The
