@@ -9,7 +9,7 @@
 * @package Faster-Framework-API
 * @author Volo, LLC
 * @link http://volosites.com/
-* @version 1.0362
+* @version 1.0363
 */
 
 // SPEED UP PHP BY TURNING OFF UNNECESSARY ASP TAG PARSING
@@ -1440,7 +1440,7 @@ class Faster_Data {
 	* `id` char(8) COLLATE utf8_unicode_ci NOT NULL,
 	* `group` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
 	* `dt_created` datetime NOT NULL,
-	* PRIMARY KEY (`id`)
+	* PRIMARY KEY (`id`,`group`)
 	* ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 	*
 	* ...and for SQLite would be:
