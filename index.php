@@ -9,7 +9,7 @@
 * @package Faster-Framework-API
 * @author Volo, LLC
 * @link http://volosites.com/
-* @version 1.0363
+* @version 1.0364
 */
 
 // SPEED UP PHP BY TURNING OFF UNNECESSARY ASP TAG PARSING
@@ -1431,8 +1431,10 @@ class Faster_Data {
 	* integrity if they don't know what they are doing in transferring a database. By using these keys
 	* instead, the data integrity remains intact.
 	*
-	* WARNING: This only provides numbers up to 47,775,744 (~ 47 million). If you need more than this,
-	* then create your own function. (BTW, 9x9x9x16x16x16x16 = 47,775,744.)
+	* WARNING: Be aware that 8 digit trigesimals with dashes and no leading zeroes gives you a range of
+	* around 21.8 billion potential numbers. If you need more numbers, then expand the $nSize and/or
+	* remove the dash. If you expand the size, note that your table primary key and foreign key size
+	* will need to change too.
 	*
 	* The SQL for creating this table in MySQL would be:
 	*
@@ -1453,15 +1455,28 @@ class Faster_Data {
 	*
 	* @param object $PDO The current PDO object
 	* @param string $sTable The table by which we need this new unique ID value.
+	* @param integer $nSize The number of digits you wish to have.
+	* @param boolean $bWithDash Whether the number should have a dash in it or not
 	* @return string A unique ID for our record. It is in the format 999-ABCD and is fixed at 8
 	* characters. The dash helps us identify the record faster, visually, if viewing the records
 	* in a table.
 	*/
-	public function getNewID($PDO, $sTable, $nSize = 8) {
-		$sKey = mt_rand(111,999) . '-';
-		$sKey .= dechex(mt_rand(1111111111,9999999999));
-		$sKey = substr($sKey, 0, $nSize); // failsafe
-		$sKey = strtoupper($sKey);
+	public function getNewID($PDO, $sTable, $nSize = 8, $bWithDash = TRUE) {
+
+		// generate variant trigesimal (base 30)
+		// note trigesimals help us avoid numbers with negative meanings in them
+		$sKey = '';
+		$sPossible = '0123456789BCDFGHJKLMNPQRSTVWXZ';
+		for ($i = 1; $i <= $nSize; $i++) {
+			if (($bWithDash) and ($i == 4)) {
+				$sKey .= '-';
+				continue;
+			}
+			$nRand = ($i == 1) ? mt_rand(1,29) : mt_rand(0,29);
+			$c = substr($sPossible, $nRand, 1);
+			$sKey .= $c;
+		}
+
 		$sTable = strtoupper($sTable);
 		$sDate = gmdate('Y-m-d H:i:s');
 		$sSQL = "INSERT INTO `ids` (`id`, `group`, `dt_created`) VALUES ('$sKey', '$sTable', '$sDate');";
