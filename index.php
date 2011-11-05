@@ -1439,11 +1439,11 @@ class Faster_Data {
 	* The SQL for creating this table in MySQL would be:
 	*
 	* CREATE TABLE IF NOT EXISTS `ids` (
-	* `id` char(8) COLLATE utf8_unicode_ci NOT NULL,
-	* `group` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
-	* `dt_created` datetime NOT NULL,
-	* PRIMARY KEY (`id`,`group`)
-	* ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+	*  `id` char(8) COLLATE ascii_bin NOT NULL,
+	*  `group` varchar(80) COLLATE ascii_bin NOT NULL,
+	*  `dt_created` datetime NOT NULL,
+	*  PRIMARY KEY (`id`,`group`)
+	*) ENGINE=MyISAM DEFAULT CHARSET=ascii COLLATE=ascii_bin;
 	*
 	* ...and for SQLite would be:
 	*
