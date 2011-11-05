@@ -5,6 +5,11 @@ All rights reserved. BSD License.
 CHANGES
 ***********************************
 
+1.0365
+***********************************
+- Fixed a bug in a 404 handler where it kept redirecting to the homepage on incorrectly pathed 
+  controllers.
+
 1.0364
 ***********************************
 - Added trigesimal number range to getNewID(). If we use a size of 8 digits with a dash, and no 
