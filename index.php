@@ -9,7 +9,7 @@
 * @package Faster-Framework-API
 * @author Volo, LLC
 * @link http://volosites.com/
-* @version 1.0364
+* @version 1.0365
 */
 
 // SPEED UP PHP BY TURNING OFF UNNECESSARY ASP TAG PARSING
@@ -725,6 +725,22 @@ class Faster_Request extends Faster {
 			if (!file_exists($_F . '/app/_controllers/Default/cDefault.php')) {
 				trigger_error('Your folder layout is missing a app/_controllers/Default/cDefault.php controller file', E_USER_ERROR);
 			}
+			if (($_sGroup == 'Default') and ($_sAction == 'Default')) {
+				$_sScript = $_SERVER['SCRIPT_NAME'];
+				$_sRequest = $_SERVER['REQUEST_URI'];
+				$_sScript = str_replace('/index.php','',$_sScript);
+				$_sRequest = str_replace($_sScript,'',$_sRequest);
+				if (strpos(' ' . $_sRequest,'?')>0) {
+					$_asParts = explode('?',$_sRequest);
+					$_sRequest = $_asParts[0];
+				}
+				if ($_sRequest != '/') {
+					$this->request->redirectRoute(404);
+				}
+				unset($_sRequest);
+				unset($_sScript);
+				unset($_asParts);
+			}
 			$_sPath = $_F . '/app/_controllers/' . $_sGroup . '/c' . $_sAction . '.php';
 			if (!file_exists($_sPath)) {
 				$_sPath = $_F . '/app/_controllers/' . $_sGroup . '/c' . $_sGroup . '.php';
@@ -738,15 +754,32 @@ class Faster_Request extends Faster {
 			unset($_sAction);			
 			require_once($_sPath);
 		} else {
+			// syntax on $_sWhichController would be like 'Test/MeOut'
 			$_s = $_sWhichController;
+			unset($_sWhichController);
 			$_s = str_replace('.php','',$_s);
 			$_s = ltrim($_s, '/');
 			$_s = rtrim($_s, '/');		
 			$_s .= '.x';
 			$_sBase = basename($_s);
-			$_s = str_replace('/' . $_sBase . '.x','/c' . $_sBase . '.x');
+			$_s = str_replace('/' . $_sBase,'/c' . $_sBase,$_s);
 			$_s = str_replace('.x','',$_s);
-			unset($_sWhichController);
+			if ($_s == 'Default/Default') {			
+				$_sScript = $_SERVER['SCRIPT_NAME'];
+				$_sRequest = $_SERVER['REQUEST_URI'];
+				$_sScript = str_replace('/index.php','',$_sScript);
+				$_sRequest = str_replace($_sScript,'',$_sRequest);
+				if (strpos(' ' . $_sRequest,'?')>0) {
+					$_asParts = explode('?',$_sRequest);
+					$_sRequest = $_asParts[0];
+				}
+				if ($_sRequest != '/') {
+					$this->request->redirectRoute(404);
+				}
+				unset($_sRequest);
+				unset($_sScript);
+				unset($_asParts);						
+			}
 			require_once($_F . '/app/_controllers/' . $_s . '.php');
 		}
 		if ($_bStopWhenRouted) {
