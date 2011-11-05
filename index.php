@@ -563,6 +563,23 @@ class Faster_Request extends Faster {
 		if (file_exists($F . '/app/_controllers/' . $sPossibleGroup . '/c' . $sPossibleAction . '.php')) {
 			array_shift($asParts);
 		}
+		
+		if ("$sGroup/$sAction" == 'Default/Default') {
+			$sScript = @ $_SERVER['SCRIPT_NAME'];
+			$sRequest = @ $_SERVER['REQUEST_URI'];
+			$sScript = str_replace('/index.php','',$sScript);
+			$sRequest = str_replace($sScript,'',$sRequest);	
+			$sRequest .= '?';
+			$asParts = explode('?',$sRequest);
+			$sRequest = $asParts[0];
+			$sRequest = ltrim($sRequest, '/');
+			$sRequest = rtrim($sRequest,'/');	
+			if (strlen($sRequest) == 0) {
+				return array();
+			}
+			$asParts = explode('/',$sRequest);
+		}		
+		
 		$this->_params = $asParts;
 		return $asParts;
 	}
