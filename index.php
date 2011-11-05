@@ -9,7 +9,7 @@
 * @package Faster-Framework-API
 * @author Volo, LLC
 * @link http://volosites.com/
-* @version 1.0365
+* @version 1.0366
 */
 
 // SPEED UP PHP BY TURNING OFF UNNECESSARY ASP TAG PARSING
@@ -643,7 +643,29 @@ class Faster_Request extends Faster {
 	public function getServerVar($sKey){
 		$sVal = @ $_SERVER[$sKey];
 		return $sVal;
-	}	
+	}
+	
+	/**
+	* Block the Default page controller Default/cDefault.php from being able to process
+	* ending URL parameters, and send them to 404 pages instead.
+	*
+	* Drop a call to this in app/_controllers/Default/cDefault.php at the top and it will
+	* give you 404 pages. This gives you better debugging if you're actually wanting 404.
+	*
+	*/
+	public function blockDefaultURLParams(){
+		$sScript = @ $_SERVER['SCRIPT_NAME'];
+		$sRequest = @ $_SERVER['REQUEST_URI'];
+		$sScript = str_replace('/index.php','',$sScript);
+		$sRequest = str_replace($sScript,'',$sRequest);
+		if (strpos(' ' . $sRequest,'?')>0) {
+			$asParts = explode('?',$sRequest);
+			$sRequest = $asParts[0];
+		}
+		if ($sRequest != '/') {
+			$this->request->redirectRoute(404);
+		}
+	}
 
 	/**
 	* Looks at the incoming URL, or the $sWhichController variable, and routes the site workflow
@@ -725,22 +747,6 @@ class Faster_Request extends Faster {
 			if (!file_exists($_F . '/app/_controllers/Default/cDefault.php')) {
 				trigger_error('Your folder layout is missing a app/_controllers/Default/cDefault.php controller file', E_USER_ERROR);
 			}
-			if (($_sGroup == 'Default') and ($_sAction == 'Default')) {
-				$_sScript = $_SERVER['SCRIPT_NAME'];
-				$_sRequest = $_SERVER['REQUEST_URI'];
-				$_sScript = str_replace('/index.php','',$_sScript);
-				$_sRequest = str_replace($_sScript,'',$_sRequest);
-				if (strpos(' ' . $_sRequest,'?')>0) {
-					$_asParts = explode('?',$_sRequest);
-					$_sRequest = $_asParts[0];
-				}
-				if ($_sRequest != '/') {
-					$this->request->redirectRoute(404);
-				}
-				unset($_sRequest);
-				unset($_sScript);
-				unset($_asParts);
-			}
 			$_sPath = $_F . '/app/_controllers/' . $_sGroup . '/c' . $_sAction . '.php';
 			if (!file_exists($_sPath)) {
 				$_sPath = $_F . '/app/_controllers/' . $_sGroup . '/c' . $_sGroup . '.php';
@@ -764,22 +770,6 @@ class Faster_Request extends Faster {
 			$_sBase = basename($_s);
 			$_s = str_replace('/' . $_sBase,'/c' . $_sBase,$_s);
 			$_s = str_replace('.x','',$_s);
-			if ($_s == 'Default/Default') {			
-				$_sScript = $_SERVER['SCRIPT_NAME'];
-				$_sRequest = $_SERVER['REQUEST_URI'];
-				$_sScript = str_replace('/index.php','',$_sScript);
-				$_sRequest = str_replace($_sScript,'',$_sRequest);
-				if (strpos(' ' . $_sRequest,'?')>0) {
-					$_asParts = explode('?',$_sRequest);
-					$_sRequest = $_asParts[0];
-				}
-				if ($_sRequest != '/') {
-					$this->request->redirectRoute(404);
-				}
-				unset($_sRequest);
-				unset($_sScript);
-				unset($_asParts);						
-			}
 			require_once($_F . '/app/_controllers/' . $_s . '.php');
 		}
 		if ($_bStopWhenRouted) {
