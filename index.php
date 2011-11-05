@@ -564,7 +564,7 @@ class Faster_Request extends Faster {
 			array_shift($asParts);
 		}
 		
-		if ("$sGroup/$sAction" == 'Default/Default') {
+		if ($sAction == 'Default') {
 			$sScript = @ $_SERVER['SCRIPT_NAME'];
 			$sRequest = @ $_SERVER['REQUEST_URI'];
 			$sScript = str_replace('/index.php','',$sScript);
@@ -578,6 +578,9 @@ class Faster_Request extends Faster {
 				return array();
 			}
 			$asParts = explode('/',$sRequest);
+			if ($sGroup != 'Default') {
+				array_shift($asParts);
+			}
 		}		
 		
 		$this->_params = $asParts;
