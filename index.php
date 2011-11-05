@@ -238,6 +238,7 @@ class Faster_Request extends Faster {
 	*/
 	public function redirectRoute($sPath, $bTemp = 1) {
 		if ($sPath == 404) {
+			trigger_error('404');
 			$this->dispatchRoute(404);
 			exit;
 		}
