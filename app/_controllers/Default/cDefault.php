@@ -29,6 +29,12 @@
 * 
 * @package User-Sample-Application
 */
+
+// TURN OFF ACCEPTING URL PARAMETERS ON THIS PAGE
+// REDIRECT TO A 404 INSTEAD.
+// uncomment the following line to enable it
+// $this->request->blockDefaultURLParams();
+
 $asParams = $this->request->getParams();
 $sParam1 = @ $asParams[0];
 
