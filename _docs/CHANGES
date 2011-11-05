@@ -9,6 +9,9 @@ CHANGES
 ***********************************
 - The 1.0365 had some problems. Fixed this bug regarding dispatchRoute(): 
   https://github.com/volomike/Faster/issues/19
+- Adjusted getParams() with a problem on the Default controller. If nothing was passed in the URL,
+  the getParams() was returning basically the equivalent of $this->core->base(). Now it returns
+  the proper URL parameters.
 
 1.0365
 ***********************************
