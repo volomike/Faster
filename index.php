@@ -9,7 +9,7 @@
 * @package Faster-Framework-API
 * @author Volo, LLC
 * @link http://volosites.com/
-* @version 1.0366
+* @version 1.0367
 */
 
 // SPEED UP PHP BY TURNING OFF UNNECESSARY ASP TAG PARSING
