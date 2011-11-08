@@ -5,6 +5,11 @@ All rights reserved. BSD License.
 CHANGES
 ***********************************
 
+1.0367
+***********************************
+- Resolves major bug regarding access to $this->request from inside a model. Documented in 
+  https://github.com/volomike/Faster/issues/21
+
 1.0366
 ***********************************
 - The 1.0365 had some problems. Fixed this bug regarding dispatchRoute(): 
