@@ -1034,7 +1034,7 @@ class Faster_Model extends Faster {
 		require_once($_sPath);
 		$_o = new $_sModelName();
 		$_o->core = $this->core;
-		$_o->request = $this;
+		$_o->request = $this->request;
 		$_o->model = $this;
 		$_o->view = $this->view;
 		$_o->data = $this->data;		
