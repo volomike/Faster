@@ -5,6 +5,11 @@ All rights reserved. BSD License.
 CHANGES
 ***********************************
 
+1.0368
+***********************************
+- Fixed "Improper Intended Use of Cookie Prefix" https://github.com/volomike/Faster/issues/22. Also
+  made the persistent cookies take an $nDays parameter for number of days to persist the cookie.
+
 1.0367
 ***********************************
 - Resolves major bug regarding access to $this->request from inside a model. Documented in 
