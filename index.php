@@ -847,7 +847,7 @@ class Faster_Request extends Faster {
 	* 
 	* @param string $sLabel The key of that cookie value
 	* @param string $sValue The value of that cookie by key
-	* @param string $nDays The number of days to keep the cookie. Defaults to 365 days.
+	* @param integer $nDays The number of days to keep the cookie. Defaults to 365 days.
 	*/
 	public function writePersistentCookie($sLabel, $sValue,$nDays = 365) {
 		$sCookiePrefix = @ $this->core->config['COOKIE_PREFIX'] . '_';
@@ -874,10 +874,11 @@ class Faster_Request extends Faster {
 	* 
 	* @param string $sLabel The key of that cookie value
 	* @param string $sValue The value of that cookie by key
+	* @param integer $nDays The number of days to keep the cookie. Defaults to 365 days.
 	*/
-	public function writeEncryptedPersistentCookie($sLabel, $sValue) {
+	public function writeEncryptedPersistentCookie($sLabel, $sValue,$nDays = 365) {
 		$sValue = $this->_encryptData($sValue);
-		$this->writePersistentCookie($sLabel, $sValue);
+		$this->writePersistentCookie($sLabel, $sValue,$nDays);
 	}
 
 	/**
