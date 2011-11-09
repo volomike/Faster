@@ -9,7 +9,7 @@
 * @package Faster-Framework-API
 * @author Volo, LLC
 * @link http://volosites.com/
-* @version 1.0367
+* @version 1.0368
 */
 
 // SPEED UP PHP BY TURNING OFF UNNECESSARY ASP TAG PARSING
@@ -804,7 +804,7 @@ class Faster_Request extends Faster {
 	* @return string The value of that cookie by key
 	*/
 	public function readCookie($sLabel) {
-		$sCookiePrefix = @ '_' . $this->core->config['COOKIE_PREFIX'];
+		$sCookiePrefix = @ $this->core->config['COOKIE_PREFIX'] . '_';
 		$sLabel = $sCookiePrefix . strtolower($sLabel);
 		if (isset($_COOKIE[$sLabel])) {
 			return $_COOKIE[$sLabel];
@@ -832,7 +832,7 @@ class Faster_Request extends Faster {
 	* @param string $sValue The value of that cookie by key
 	*/
 	public function writeCookie($sLabel, $sValue) {
-		$sCookiePrefix = @ '_' . $this->core->config['COOKIE_PREFIX'];
+		$sCookiePrefix = @ $this->core->config['COOKIE_PREFIX'] . '_';
 		$sPath = '/';
 		if ($sValue == '') {
 		    $this->deleteCookie($sLabel);
@@ -847,14 +847,15 @@ class Faster_Request extends Faster {
 	* 
 	* @param string $sLabel The key of that cookie value
 	* @param string $sValue The value of that cookie by key
+	* @param string $nDays The number of days to keep the cookie. Defaults to 365 days.
 	*/
-	public function writePersistentCookie($sLabel, $sValue) {
-		$sCookiePrefix = @ '_' . $this->core->config['COOKIE_PREFIX'];
+	public function writePersistentCookie($sLabel, $sValue,$nDays = 365) {
+		$sCookiePrefix = @ $this->core->config['COOKIE_PREFIX'] . '_';
 		$sPath = '/';
 		if (!headers_sent()) {
 			header ('Cache-control: private'); // IE 6 Fix.
 		}
-		setcookie(strtolower($sCookiePrefix . $sLabel), $sValue, time()+60*60*24*365, $sPath);
+		setcookie(strtolower($sCookiePrefix . $sLabel), $sValue, time()+60*60*24*$nDays, $sPath);
 	}
 
 	/**
@@ -885,7 +886,7 @@ class Faster_Request extends Faster {
 	* @param string $sLabel the key of that cookie
 	*/
 	public function deleteCookie($sLabel) {
-		$sCookiePrefix = @ '_' . $this->core->config['COOKIE_PREFIX'];
+		$sCookiePrefix = @ $this->core->config['COOKIE_PREFIX'] . '_';
 		$sPath = '/';
 		$sLabel = strtolower($sLabel);
 		setcookie ($sCookiePrefix . $sLabel, ' ', 0, $sPath);
