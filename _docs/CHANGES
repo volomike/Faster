@@ -5,6 +5,10 @@ All rights reserved. BSD License.
 CHANGES
 ***********************************
 
+1.0369
+***********************************
+- Fixed recursive call to getNewID() that failed to use the $this-> object.
+
 1.0368
 ***********************************
 - Fixed "Improper Intended Use of Cookie Prefix" https://github.com/volomike/Faster/issues/22. Also
