@@ -1534,7 +1534,7 @@ class Faster_Data {
 				trigger_error('The "ids" table does not exist.', E_USER_ERROR);
 			}
 			if ($SQLSTATE == '23000') {
-				return $this->getNewID();
+				return $this->getNewID($PDO, $sTable, $nSize, $bWithDash);
 			}
 			trigger_error("The SQLSTATE ($SQLSTATE) error code happened in getNewID() of the Faster_Data class.", E_USER_ERROR);
 		}
