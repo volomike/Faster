@@ -9,7 +9,7 @@
 * @package Faster-Framework-API
 * @author Volo, LLC
 * @link http://volosites.com/
-* @version 1.0368
+* @version 1.0369
 */
 
 // SPEED UP PHP BY TURNING OFF UNNECESSARY ASP TAG PARSING
@@ -1534,7 +1534,7 @@ class Faster_Data {
 				trigger_error('The "ids" table does not exist.', E_USER_ERROR);
 			}
 			if ($SQLSTATE == '23000') {
-				return getNewID();
+				return $this->getNewID();
 			}
 			trigger_error("The SQLSTATE ($SQLSTATE) error code happened in getNewID() of the Faster_Data class.", E_USER_ERROR);
 		}
