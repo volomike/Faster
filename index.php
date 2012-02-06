@@ -39,7 +39,7 @@ if (get_magic_quotes_gpc()) {
 ini_set('auto_detect_line_endings','1');
 
 // TURN ON SHORT OPEN TAGS
-ini_set('short_open_tags','On');
+ini_set('short_open_tag','On');
 
 // SET SESSION TIMEOUT
 ini_set('session.cookie_lifetime','3600'); //an hour
