@@ -5,6 +5,10 @@ All rights reserved. BSD License.
 CHANGES
 ***********************************
 
+1.0370
+***********************************
+- In index.php, adjusted short_open_tags to short_open_tag -- Bug.
+
 1.0369
 ***********************************
 - Fixed recursive call to getNewID() that failed to use the $this-> object.
