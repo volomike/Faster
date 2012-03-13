@@ -25,8 +25,9 @@ class Test extends Faster {
 public function tester($sParam1){
 	$PDO = $this->data->sqlite();
 	//$PDO = $this->data->mysql();
-	$sSQL = "select * from names where first_name = '$sParam1'";
+	$sSQL = "select * from names where first_name = ?";
 	$st = $PDO->prepare($sSQL);
+	$st->bindParam(1, $sParam1, PDO::PARAM_STR);
 	$st->execute();
 	$rsRows = $st->fetchAll();
 	foreach($rsRows as $rwRow){break;}
