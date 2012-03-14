@@ -1,3 +1,10 @@
+Please note -- a new Faster 2.0 is in beta and will soon arrive on Github just as soon as I can find the
+time. This new version fixes some inconsistencies in the cookie API, adds plugin and theme support, 
+reworks the config file system slightly into a better permissions folder strategy, and then adds a new
+extra.php file so that one can extend the framework without having to edit the index.php file.
+
+It is available here: http://voloreport.com/faster-2-0-beta-has-arrived
+
 Faster - A Minimal PHP MVC Framework
 Copyright (c) 2011, Volo, LLC (http://volosites.com/) - Mike McKee
 All rights reserved. BSD License.
